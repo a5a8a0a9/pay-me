@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormArray,
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	Validators,
-} from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BillService } from './bill.service';
+import { EditComponent } from './modal/edit/edit.component';
 
 @Component({
 	selector: 'yo-bill',
@@ -14,57 +9,23 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 	styleUrls: ['./bill.component.scss'],
 })
 export class BillComponent implements OnInit {
-	form: FormGroup = this.fb.group({
-		name: new FormControl('', [Validators.required]),
-		memo: new FormControl('', []),
-		list: this.fb.array([]),
-	});
-
-	get listForm(): FormArray {
-		return this.form.get('list') as FormArray;
-	}
-
-	get totalMoney() {
-		return this.form.value.list.reduce((total: number, item: any) => {
-			return total + item.money;
-		}, 0);
-	}
-
-	constructor(private fb: FormBuilder, private modalService: NgbModal) {}
+	billList$ = this.billService.list$;
+	constructor(
+		private modalService: NgbModal,
+		private billService: BillService
+	) {}
 
 	ngOnInit() {
-		this.addPayment();
+		const list = this.billService.getList();
+		this.billService.patchList(list);
 	}
 
-	addPayment() {
-		const itemForm = this.fb.group({
-			user: new FormControl('', [Validators.required]),
-			item: new FormControl(null, [Validators.required]),
-			money: new FormControl('', [Validators.required, Validators.min(0)]),
-		});
-		this.listForm.push(itemForm);
+	deleteBill(bill: any) {
+		this.billService.delete(bill);
 	}
 
-	removePayment(index: number) {
-		this.listForm.removeAt(index);
-	}
-
-	reset() {
-		this.form.reset({
-			name: '',
-			memo: '',
-		});
-		this.listForm.clear();
-		this.addPayment();
-	}
-	onSubmit() {
-		this.form.markAsDirty();
-		this.form.markAllAsTouched();
-		console.log(this.form.value);
-	}
-
-	onCreateOpen(modalContent: any) {
-		this.modalService.open(modalContent, {
+	onCreateOpen() {
+		this.modalService.open(EditComponent, {
 			centered: true,
 			scrollable: true,
 			size: 'lg',

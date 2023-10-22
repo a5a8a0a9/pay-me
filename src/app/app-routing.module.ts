@@ -15,6 +15,10 @@ const routes: Routes = [
 		redirectTo: 'bill',
 		pathMatch: 'full',
 	},
+	{
+		path: '**',
+		redirectTo: 'bill',
+	},
 ];
 
 @NgModule({

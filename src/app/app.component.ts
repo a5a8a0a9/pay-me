@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 		this.router.events
 			.pipe(filter((response) => response instanceof NavigationEnd))
 			.subscribe((response) => {
-				this.currentUrl = (response as NavigationEnd).url;
+				this.currentUrl = (response as NavigationEnd).urlAfterRedirects;
 			});
 	}
 }
