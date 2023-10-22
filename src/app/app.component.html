@@ -1,138 +1,17 @@
-<div class="container vstack h-100">
-	<div class="hstack">
-		<h1>給我錢</h1>
-		<button class="btn btn-outline-primary" (click)="onCreateOpen(createModal)">
-			+
-		</button>
-	</div>
-
-	<div class="row g-2">
-		<div class="col-md-6 col-lg-4 col-xl-3">
-			<div class="card">
-				<div class="card-header">項目1</div>
-				<div class="card-body">
-					<p><small>人數： 15</small></p>
-					<p>
-						<small
-							>總金額：{{ 1234679 | currency : "TWD" : "symbol" : ".0" }}</small
-						>
-					</p>
-				</div>
-				<div class="card-footer text-end text-primary">
-					<small>{{ 1234679 | currency : "TWD" : "symbol" : ".0" }}</small>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="sticky-top bg-light px-3 py-2 border-bottom border-2">
+	<ul class="nav nav-pills justify-content-end">
+		<li *ngFor="let menu of menuList" class="nav-item">
+			<a
+				class="nav-link"
+				[class.active]="currentUrl.includes(menu.path)"
+				[routerLink]="menu.path"
+			>
+				{{ menu.name }}
+			</a>
+		</li>
+	</ul>
 </div>
 
-<ng-template #createModal let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title">新增活動</h4>
-		<button
-			type="button"
-			class="btn-close"
-			aria-label="Close"
-			(click)="modal.dismiss()"
-		></button>
-	</div>
-	<div class="modal-body">
-		<form [formGroup]="form">
-			<div class="vstack gap-2">
-				<div class="vstack gap-2 border-bottom pb-2">
-					<div>
-						<label class="form-label">活動</label>
-						<input formControlName="name" type="text" class="form-control" />
-					</div>
-					<div>
-						<label class="form-label">備註</label>
-						<textarea
-							formControlName="memo"
-							type="text"
-							class="form-control"
-						></textarea>
-					</div>
-				</div>
-				<div class="hstack justify-content-between border-bottom pb-1">
-					<label>清單</label>
-					<button
-						type="button"
-						class="btn btn-sm btn-outline-primary"
-						(click)="addItem()"
-					>
-						新增
-					</button>
-				</div>
-				<div formArrayName="list" class="vstack gap-2">
-					<div
-						*ngFor="let itemForm of listForm.controls; let itemIndex = index"
-						[formGroupName]="itemIndex"
-						class="border rounded w-100"
-						style="display: grid; grid-template-columns: 50px 1fr 50px"
-					>
-						<div
-							class="vstack align-items-center justify-content-center p-2 border-end"
-						>
-							#{{ itemIndex + 1 }}
-						</div>
-						<div class="px-3 py-2">
-							<div class="row g-2">
-								<div class="col-md-4">
-									<input
-										formControlName="user"
-										type="text"
-										class="form-control form-control-sm"
-										placeholder="誰出的"
-									/>
-								</div>
-								<div class="col-md-4">
-									<input
-										formControlName="item"
-										type="text"
-										class="form-control form-control-sm"
-										placeholder="買什麼"
-									/>
-								</div>
-								<div class="col-md-4">
-									<input
-										formControlName="money"
-										type="number"
-										class="form-control form-control-sm"
-										placeholder="多少錢"
-									/>
-								</div>
-							</div>
-						</div>
-						<div
-							class="vstack align-items-center justify-content-center p-2 border-start"
-						>
-							<button
-								*ngIf="listForm.controls.length > 1"
-								type="button"
-								class="btn btn-sm btn-outline-danger text-nowrap"
-								(click)="removeItem(itemIndex)"
-							>
-								&times;
-							</button>
-						</div>
-					</div>
-				</div>
-				<div class="hstack justify-content-end border-top pt-2">
-					<span>總金額：{{ totalMoney | number }}</span>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="modal-footer">
-		<button
-			type="button"
-			class="btn btn-outline-secondary"
-			(click)="modal.close()"
-		>
-			取消
-		</button>
-		<button type="button" class="btn btn-primary" (click)="onSubmit()">
-			確定
-		</button>
-	</div>
-</ng-template>
+<div class="h-100 p-3 overflow-auto">
+	<router-outlet></router-outlet>
+</div>
