@@ -53,7 +53,6 @@ export class AppComponent implements OnInit {
 	}
 
 	reset() {
-		console.log(this.form.value);
 		this.form.reset({
 			name: '',
 			memo: '',
@@ -64,6 +63,7 @@ export class AppComponent implements OnInit {
 	onSubmit() {
 		this.form.markAsDirty();
 		this.form.markAllAsTouched();
+		console.log(this.form.value);
 	}
 
 	onCreateOpen(modalContent: any) {

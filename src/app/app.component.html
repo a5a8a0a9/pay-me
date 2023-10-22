@@ -10,7 +10,14 @@
 		<div class="col-md-6 col-lg-4 col-xl-3">
 			<div class="card">
 				<div class="card-header">項目1</div>
-				<div class="card-body"></div>
+				<div class="card-body">
+					<p><small>人數： 15</small></p>
+					<p>
+						<small
+							>總金額：{{ 1234679 | currency : "TWD" : "symbol" : ".0" }}</small
+						>
+					</p>
+				</div>
 				<div class="card-footer text-end text-primary">
 					<small>{{ 1234679 | currency : "TWD" : "symbol" : ".0" }}</small>
 				</div>
@@ -21,7 +28,7 @@
 
 <ng-template #createModal let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title">新增款項</h4>
+		<h4 class="modal-title">新增活動</h4>
 		<button
 			type="button"
 			class="btn-close"
@@ -34,7 +41,7 @@
 			<div class="vstack gap-2">
 				<div class="vstack gap-2 border-bottom pb-2">
 					<div>
-						<label class="form-label">款項</label>
+						<label class="form-label">活動</label>
 						<input formControlName="name" type="text" class="form-control" />
 					</div>
 					<div>
@@ -56,63 +63,62 @@
 						新增
 					</button>
 				</div>
-				<div class="overflow-auto">
-					<table class="table">
-						<thead class="sticky-top">
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">人</th>
-								<th scope="col">項目</th>
-								<th scope="col">金額</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody formArrayName="list">
-							<tr
-								*ngFor="
-									let itemForm of listForm.controls;
-									let itemIndex = index
-								"
-								[formGroupName]="itemIndex"
-							>
-								<th scope="row">{{ itemIndex + 1 }}</th>
-								<td>
+				<div formArrayName="list" class="vstack gap-2">
+					<div
+						*ngFor="let itemForm of listForm.controls; let itemIndex = index"
+						[formGroupName]="itemIndex"
+						class="border rounded w-100"
+						style="display: grid; grid-template-columns: 50px 1fr 50px"
+					>
+						<div
+							class="vstack align-items-center justify-content-center p-2 border-end"
+						>
+							#{{ itemIndex + 1 }}
+						</div>
+						<div class="px-3 py-2">
+							<div class="row g-2">
+								<div class="col-md-4">
 									<input
 										formControlName="user"
 										type="text"
 										class="form-control form-control-sm"
+										placeholder="誰出的"
 									/>
-								</td>
-								<td>
+								</div>
+								<div class="col-md-4">
 									<input
 										formControlName="item"
 										type="text"
 										class="form-control form-control-sm"
+										placeholder="買什麼"
 									/>
-								</td>
-								<td>
+								</div>
+								<div class="col-md-4">
 									<input
 										formControlName="money"
 										type="number"
 										class="form-control form-control-sm"
+										placeholder="多少錢"
 									/>
-								</td>
-								<td>
-									<button
-										*ngIf="listForm.controls.length > 1"
-										type="button"
-										class="btn btn-sm btn-outline-danger text-nowrap"
-										(click)="removeItem(itemIndex)"
-									>
-										&times;
-									</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+								</div>
+							</div>
+						</div>
+						<div
+							class="vstack align-items-center justify-content-center p-2 border-start"
+						>
+							<button
+								*ngIf="listForm.controls.length > 1"
+								type="button"
+								class="btn btn-sm btn-outline-danger text-nowrap"
+								(click)="removeItem(itemIndex)"
+							>
+								&times;
+							</button>
+						</div>
+					</div>
 				</div>
-				<div class="d-flex justify-content-end border-top pt-2">
-					<span>{{ totalMoney | number }}</span>
+				<div class="hstack justify-content-end border-top pt-2">
+					<span>總金額：{{ totalMoney | number }}</span>
 				</div>
 			</div>
 		</form>
