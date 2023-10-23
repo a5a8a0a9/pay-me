@@ -17,7 +17,10 @@ export class BillService {
 	}
 
 	getList() {
-		return JSON.parse(localStorage.getItem('billList') ?? JSON.stringify([]));
+		const billList: any[] = JSON.parse(
+			localStorage.getItem('billList') ?? JSON.stringify([])
+		);
+		return billList;
 	}
 
 	setList(request: any) {

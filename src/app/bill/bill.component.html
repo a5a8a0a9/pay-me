@@ -1,7 +1,9 @@
 <div class="container vstack">
 	<div class="hstack">
 		<h1>給我錢</h1>
-		<button class="btn btn-outline-primary" (click)="onCreateOpen()">+</button>
+		<button class="btn btn-outline-primary" (click)="onCreateOpen()">
+			<i class="fa-solid fa-money-bill-1-wave fa-beat"></i>
+		</button>
 	</div>
 
 	<div class="row g-2">
@@ -9,27 +11,35 @@
 			*ngFor="let bill of billList$ | async"
 			class="col-md-6 col-lg-4 col-xl-3"
 		>
-			<div class="card">
+			<div class="card" (click)="onDetailOpen(bill)">
 				<div class="card-header hstack justify-content-between">
 					<div>{{ bill.name }}</div>
 					<button
 						class="btn btn-outline-danger btn-sm"
-						(click)="deleteBill(bill)"
+						(click)="$event.stopPropagation(); deleteBill(bill)"
 					>
-						X
+						<i class="fa-fw fa-solid fa-trash"></i>
 					</button>
 				</div>
 				<div class="card-body">
-					<p><small>人數： 15</small></p>
-					<p><small>項目： 20</small></p>
-					<p>
-						<small
-							>總金額：{{ 1234679 | currency : "TWD" : "symbol" : ".0" }}</small
-						>
+					<p class="text-muted text-truncate">
+						<small>{{ bill.memo }}</small>
 					</p>
+					<div class="hstack gap-3">
+						<div class="badge rounded-pill bg-success">
+							<i class="fa-fw fa-solid fa-user"></i>
+							{{ bill.userCount }}
+						</div>
+						<div class="badge rounded-pill bg-warning">
+							<i class="fa-fw fa-regular fa-file-lines"></i>
+							{{ bill.list.length }}
+						</div>
+					</div>
 				</div>
 				<div class="card-footer text-end text-primary">
-					<small>{{ 1234679 | currency : "TWD" : "symbol" : ".0" }}</small>
+					<small>{{
+						bill.totalMoney | currency : "TWD" : "symbol" : ".0"
+					}}</small>
 				</div>
 			</div>
 		</div>

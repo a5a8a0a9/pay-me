@@ -31,6 +31,7 @@
 					class="btn btn-sm btn-outline-primary"
 					(click)="addPayment()"
 				>
+					<i class="fa-fw fa-solid fa-plus"></i>
 					新增
 				</button>
 			</div>
@@ -83,7 +84,7 @@
 							class="btn btn-sm btn-outline-danger text-nowrap"
 							(click)="removePayment(itemIndex)"
 						>
-							&times;
+							<i class="fa-fw fa-solid fa-trash"></i>
 						</button>
 					</div>
 				</div>
@@ -100,9 +101,11 @@
 		class="btn btn-outline-secondary"
 		(click)="activeModal.close()"
 	>
+		<i class="fa-fw fa-solid fa-xmark"></i>
 		取消
 	</button>
 	<button type="button" class="btn btn-primary" (click)="onSubmit()">
+		<i class="fa-fw fa-solid fa-check"></i>
 		確定
 	</button>
 </div>

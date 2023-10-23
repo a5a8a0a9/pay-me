@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BillService } from './bill.service';
 import { EditComponent } from './modal/edit/edit.component';
+import { DetailComponent } from './modal/detail/detail.component';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'yo-bill',
@@ -20,7 +22,15 @@ export class BillComponent implements OnInit {
 		this.billService.patchList(list);
 	}
 
-	deleteBill(bill: any) {
+	async deleteBill(bill: any) {
+		const { isConfirmed } = await Swal.fire({
+			title: `確定要刪除${bill.name}?`,
+			text: '',
+			showCancelButton: true,
+			confirmButtonText: '確定',
+			cancelButtonText: '取消',
+		});
+		if (!isConfirmed) return;
 		this.billService.delete(bill);
 	}
 
@@ -29,6 +39,16 @@ export class BillComponent implements OnInit {
 			centered: true,
 			scrollable: true,
 			size: 'lg',
+			backdrop: 'static',
 		});
+	}
+
+	onDetailOpen(bill: any) {
+		const modalRef = this.modalService.open(DetailComponent, {
+			centered: true,
+			scrollable: true,
+			size: 'lg',
+		});
+		modalRef.componentInstance.bill = bill;
 	}
 }

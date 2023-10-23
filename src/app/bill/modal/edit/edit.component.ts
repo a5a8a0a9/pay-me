@@ -31,6 +31,13 @@ export class EditComponent implements OnInit {
 			return total + item.money;
 		}, 0);
 	}
+
+	get userCount() {
+		return Array.from(
+			new Set(this.form.value.list.map((item: any) => item.user))
+		).length;
+	}
+
 	constructor(
 		public activeModal: NgbActiveModal,
 		private billService: BillService,
@@ -65,9 +72,10 @@ export class EditComponent implements OnInit {
 	onSubmit() {
 		this.form.markAsDirty();
 		this.form.markAllAsTouched();
-		console.log(this.form.value);
 		const request = {
 			...this.form.value,
+			totalMoney: this.totalMoney,
+			userCount: this.userCount,
 			id: moment().format('YYYYMMDDHHmmss'),
 		};
 		this.billService.create(request);
