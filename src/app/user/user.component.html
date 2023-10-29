@@ -1,1 +1,36 @@
-<p>user works!</p>
+<div class="container vstack h-100">
+	<div class="hstack align-items-center gap-2">
+		<h1>使用者</h1>
+
+		<button
+			type="button"
+			class="btn btn-outline-primary"
+			(click)="onCreateOpen()"
+		>
+			<i class="fa-solid fa-user-plus"></i>
+		</button>
+
+		<button type="button" class="btn btn-outline-success">
+			<i class="fa-solid fa-tag"></i>
+		</button>
+	</div>
+
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th style="width: 100px"><i class="fa-solid fa-user"></i>名稱</th>
+				<th><i class="fa-solid fa-tag"></i>群組</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of userList$ | async">
+				<td>{{ user.name }}</td>
+				<td>
+					<div class="d-flex flex-wrap gap-1">
+						<!-- <span class="badge">群組</span> -->
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

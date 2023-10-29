@@ -24,16 +24,8 @@
 					></textarea>
 				</div>
 			</div>
-			<div class="hstack justify-content-between border-bottom pb-1">
+			<div class="border-bottom pb-1">
 				<label>清單</label>
-				<button
-					type="button"
-					class="btn btn-sm btn-outline-primary"
-					(click)="addPayment()"
-				>
-					<i class="fa-fw fa-solid fa-plus"></i>
-					新增
-				</button>
 			</div>
 			<div formArrayName="list" class="vstack gap-2">
 				<div
@@ -82,12 +74,23 @@
 							*ngIf="listForm.controls.length > 1"
 							type="button"
 							class="btn btn-sm btn-outline-danger text-nowrap"
+							tabindex="-1"
 							(click)="removePayment(itemIndex)"
 						>
 							<i class="fa-fw fa-solid fa-trash"></i>
 						</button>
 					</div>
 				</div>
+			</div>
+			<div class="text-center">
+				<button
+					type="button"
+					class="btn btn-sm btn-outline-primary"
+					(click)="addPayment()"
+				>
+					<i class="fa-fw fa-solid fa-plus"></i>
+					新增
+				</button>
 			</div>
 			<div class="hstack justify-content-end border-top pt-2">
 				<span>總金額：{{ totalMoney | number }}</span>

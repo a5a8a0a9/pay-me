@@ -1,0 +1,74 @@
+<div class="modal-header">
+	<h4 class="modal-title">新增使用者</h4>
+	<button
+		type="button"
+		class="btn-close"
+		aria-label="Close"
+		(click)="activeModal.dismiss()"
+	></button>
+</div>
+
+<div class="modal-body">
+	<form [formGroup]="form">
+		<table class="table table-striped align-middle">
+			<thead>
+				<tr>
+					<th style="width: 50px">#</th>
+					<th>名稱</th>
+					<th style="width: 50px"></th>
+				</tr>
+			</thead>
+			<tbody formArrayName="list">
+				<tr
+					*ngFor="let userForm of listForm.controls; let userIndex = index"
+					[formGroupName]="userIndex"
+				>
+					<td>{{ userIndex + 1 }}</td>
+					<td>
+						<input
+							class="form-control form-control-sm"
+							formControlName="name"
+							placeholder="名稱"
+						/>
+					</td>
+					<td>
+						<button
+							type="button"
+							class="btn btn-outline-danger btn-sm"
+							tabindex="-1"
+							(click)="removeUser(userIndex)"
+						>
+							<i class="fa-solid fa-trash"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr />
+		<div class="text-center">
+			<button
+				type="button"
+				class="btn btn-outline-primary btn-sm"
+				(click)="addUser()"
+			>
+				<i class="fa-solid fa-plus"></i>
+				新增
+			</button>
+		</div>
+	</form>
+</div>
+
+<div class="modal-footer">
+	<button
+		type="button"
+		class="btn btn-outline-secondary"
+		(click)="activeModal.close()"
+	>
+		<i class="fa-fw fa-solid fa-xmark"></i>
+		取消
+	</button>
+	<button type="button" class="btn btn-primary" (click)="onSubmit()">
+		<i class="fa-fw fa-solid fa-check"></i>
+		確定
+	</button>
+</div>

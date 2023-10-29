@@ -1,7 +1,11 @@
 <div class="container vstack">
-	<div class="hstack">
+	<div class="hstack align-items-center gap-2">
 		<h1>給我錢</h1>
-		<button class="btn btn-outline-primary" (click)="onCreateOpen()">
+		<button
+			type="button"
+			class="btn btn-outline-primary"
+			(click)="onCreateOpen()"
+		>
 			<i class="fa-solid fa-money-bill-1-wave fa-beat"></i>
 		</button>
 	</div>
@@ -15,6 +19,7 @@
 				<div class="card-header hstack justify-content-between">
 					<div>{{ bill.name }}</div>
 					<button
+						type="button"
 						class="btn btn-outline-danger btn-sm"
 						(click)="$event.stopPropagation(); deleteBill(bill)"
 					>
@@ -23,6 +28,7 @@
 				</div>
 				<div class="card-body">
 					<p class="text-muted text-truncate">
+						<i class="fa-solid fa-file-pen"></i>
 						<small>{{ bill.memo }}</small>
 					</p>
 					<div class="hstack gap-3">
@@ -31,7 +37,7 @@
 							{{ bill.userCount }}
 						</div>
 						<div class="badge rounded-pill bg-warning">
-							<i class="fa-fw fa-regular fa-file-lines"></i>
+							<i class="fa-fw fa-solid fa-shapes"></i>
 							{{ bill.list.length }}
 						</div>
 					</div>

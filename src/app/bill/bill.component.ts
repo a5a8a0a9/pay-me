@@ -35,7 +35,7 @@ export class BillComponent implements OnInit {
 	}
 
 	onCreateOpen() {
-		this.modalService.open(EditComponent, {
+		const modalRef = this.modalService.open(EditComponent, {
 			centered: true,
 			scrollable: true,
 			size: 'lg',

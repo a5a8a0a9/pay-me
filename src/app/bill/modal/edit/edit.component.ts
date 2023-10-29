@@ -76,7 +76,7 @@ export class EditComponent implements OnInit {
 			...this.form.value,
 			totalMoney: this.totalMoney,
 			userCount: this.userCount,
-			id: moment().format('YYYYMMDDHHmmss'),
+			id: moment().format('x'),
 		};
 		this.billService.create(request);
 		this.activeModal.close();
