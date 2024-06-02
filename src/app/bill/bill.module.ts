@@ -8,6 +8,6 @@ import { EditComponent } from './modal/edit/edit.component';
 
 @NgModule({
 	declarations: [BillComponent, EditComponent, DetailComponent],
-	imports: [SharedModule, BillRoutingModule],
+	imports: [SharedModule, BillRoutingModule]
 })
 export class BillModule {}

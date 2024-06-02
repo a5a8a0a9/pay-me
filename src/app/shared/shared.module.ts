@@ -12,6 +12,6 @@ const DIRECTIVES: any[] = [];
 @NgModule({
 	declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
 	imports: [...MODULES],
-	exports: [...MODULES, ...COMPONENTS, ...PIPES, ...DIRECTIVES],
+	exports: [...MODULES, ...COMPONENTS, ...PIPES, ...DIRECTIVES]
 })
 export class SharedModule {}

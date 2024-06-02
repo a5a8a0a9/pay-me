@@ -5,7 +5,7 @@ import { BillService } from '../../bill.service';
 @Component({
 	selector: 'yo-detail',
 	templateUrl: './detail.component.html',
-	styleUrls: ['./detail.component.scss'],
+	styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
 	@Input() bill: any;

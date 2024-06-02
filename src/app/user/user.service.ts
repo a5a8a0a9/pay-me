@@ -3,17 +3,13 @@ import { Group, User } from '@shared/interface';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root',
+	providedIn: 'root'
 })
 export class UserService {
-	private userListSubject: BehaviorSubject<User[]> = new BehaviorSubject(
-		[] as User[]
-	);
+	private userListSubject: BehaviorSubject<User[]> = new BehaviorSubject([] as User[]);
 	userList$ = this.userListSubject.asObservable();
 
-	private groupListSubject: BehaviorSubject<Group[]> = new BehaviorSubject(
-		[] as User[]
-	);
+	private groupListSubject: BehaviorSubject<Group[]> = new BehaviorSubject([] as User[]);
 	groupList$ = this.groupListSubject.asObservable();
 
 	constructor() {}
@@ -23,9 +19,7 @@ export class UserService {
 	}
 
 	getUserList() {
-		const userList: any[] = JSON.parse(
-			localStorage.getItem('userList') ?? JSON.stringify([])
-		);
+		const userList: any[] = JSON.parse(localStorage.getItem('userList') ?? JSON.stringify([]));
 		return userList;
 	}
 
@@ -43,7 +37,7 @@ export class UserService {
 
 	updateUser(request: User) {
 		const list: User[] = this.getUserList();
-		const updateIndex = list.findIndex((item) => item.id === request.id);
+		const updateIndex = list.findIndex(item => item.id === request.id);
 		list.splice(updateIndex, 1, request);
 		this.setUserList(list);
 		this.patchUserList(list);
@@ -51,7 +45,7 @@ export class UserService {
 
 	deleteUser(request: User) {
 		const list: User[] = this.getUserList();
-		const deleteIndex = list.findIndex((item) => item.id === request.id);
+		const deleteIndex = list.findIndex(item => item.id === request.id);
 		list.splice(deleteIndex, 1);
 		this.setUserList(list);
 		this.patchUserList(list);

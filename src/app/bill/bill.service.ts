@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root',
+	providedIn: 'root'
 })
 export class BillService {
-	private listSubject: BehaviorSubject<any[]> = new BehaviorSubject(
-		[] as any[]
-	);
+	private listSubject: BehaviorSubject<any[]> = new BehaviorSubject([] as any[]);
 	list$ = this.listSubject.asObservable();
 
 	constructor() {}
@@ -17,9 +15,7 @@ export class BillService {
 	}
 
 	getList() {
-		const billList: any[] = JSON.parse(
-			localStorage.getItem('billList') ?? JSON.stringify([])
-		);
+		const billList: any[] = JSON.parse(localStorage.getItem('billList') ?? JSON.stringify([]));
 		return billList;
 	}
 
@@ -36,7 +32,7 @@ export class BillService {
 
 	update(request: any) {
 		const list: any[] = this.getList();
-		const updateIndex = list.findIndex((item) => item.id === request.id);
+		const updateIndex = list.findIndex(item => item.id === request.id);
 		list.splice(updateIndex, 1, request);
 		this.setList(list);
 		this.patchList(list);
@@ -44,7 +40,7 @@ export class BillService {
 
 	delete(request: any) {
 		const list: any[] = this.getList();
-		const deleteIndex = list.findIndex((item) => item.id === request.id);
+		const deleteIndex = list.findIndex(item => item.id === request.id);
 		list.splice(deleteIndex, 1);
 		this.setList(list);
 		this.patchList(list);

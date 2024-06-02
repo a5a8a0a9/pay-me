@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Component({
 	selector: 'yo-user',
 	templateUrl: './user.component.html',
-	styleUrls: ['./user.component.scss'],
+	styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
 	userList$: Observable<User[]> = this.userService.userList$;
@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
 		'bg-danger',
 		'bg-warning text-dark',
 		'bg-info text-dark',
-		'bg-dark',
+		'bg-dark'
 	] as const;
 
 	constructor(
@@ -37,7 +37,7 @@ export class UserComponent implements OnInit {
 		const modalRef = this.modalService.open(EditComponent, {
 			centered: true,
 			scrollable: true,
-			backdrop: 'static',
+			backdrop: 'static'
 		});
 	}
 }

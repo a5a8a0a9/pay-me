@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormArray,
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BillService } from '../../bill.service';
 import * as moment from 'moment';
@@ -13,13 +7,13 @@ import * as moment from 'moment';
 @Component({
 	selector: 'yo-edit',
 	templateUrl: './edit.component.html',
-	styleUrls: ['./edit.component.scss'],
+	styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
 	form: FormGroup = this.fb.group({
 		name: new FormControl('', [Validators.required]),
 		memo: new FormControl('', []),
-		list: this.fb.array([]),
+		list: this.fb.array([])
 	});
 
 	get listForm(): FormArray {
@@ -33,9 +27,7 @@ export class EditComponent implements OnInit {
 	}
 
 	get userCount() {
-		return Array.from(
-			new Set(this.form.value.list.map((item: any) => item.user))
-		).length;
+		return Array.from(new Set(this.form.value.list.map((item: any) => item.user))).length;
 	}
 
 	constructor(
@@ -52,7 +44,7 @@ export class EditComponent implements OnInit {
 		const itemForm = this.fb.group({
 			user: new FormControl('', [Validators.required]),
 			item: new FormControl(null, [Validators.required]),
-			money: new FormControl('', [Validators.required, Validators.min(0)]),
+			money: new FormControl('', [Validators.required, Validators.min(0)])
 		});
 		this.listForm.push(itemForm);
 	}
@@ -64,7 +56,7 @@ export class EditComponent implements OnInit {
 	reset() {
 		this.form.reset({
 			name: '',
-			memo: '',
+			memo: ''
 		});
 		this.listForm.clear();
 		this.addPayment();
@@ -76,7 +68,7 @@ export class EditComponent implements OnInit {
 			...this.form.value,
 			totalMoney: this.totalMoney,
 			userCount: this.userCount,
-			id: moment().format('x'),
+			id: moment().format('x')
 		};
 		this.billService.create(request);
 		this.activeModal.close();

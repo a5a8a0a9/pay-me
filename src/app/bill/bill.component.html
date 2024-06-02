@@ -1,28 +1,17 @@
 <div class="container vstack">
 	<div class="hstack align-items-center gap-2">
 		<h1>給我錢</h1>
-		<button
-			type="button"
-			class="btn btn-outline-primary"
-			(click)="onCreateOpen()"
-		>
+		<button type="button" class="btn btn-outline-primary" (click)="onCreateOpen()">
 			<i class="fa-solid fa-money-bill-1-wave fa-beat"></i>
 		</button>
 	</div>
 
 	<div class="row g-2">
-		<div
-			*ngFor="let bill of billList$ | async"
-			class="col-md-6 col-lg-4 col-xl-3"
-		>
+		<div *ngFor="let bill of billList$ | async" class="col-md-6 col-lg-4 col-xl-3">
 			<div class="card" (click)="onDetailOpen(bill)">
 				<div class="card-header hstack justify-content-between">
 					<div>{{ bill.name }}</div>
-					<button
-						type="button"
-						class="btn btn-outline-danger btn-sm"
-						(click)="$event.stopPropagation(); deleteBill(bill)"
-					>
+					<button type="button" class="btn btn-outline-danger btn-sm" (click)="$event.stopPropagation(); deleteBill(bill)">
 						<i class="fa-fw fa-solid fa-trash"></i>
 					</button>
 				</div>
@@ -40,12 +29,12 @@
 							<i class="fa-fw fa-solid fa-shapes"></i>
 							{{ bill.list.length }}
 						</div>
+
+
 					</div>
 				</div>
 				<div class="card-footer text-end text-primary">
-					<small>{{
-						bill.totalMoney | currency : "TWD" : "symbol" : ".0"
-					}}</small>
+					<small>{{ bill.totalMoney | currency: 'TWD' : 'symbol' : '.0' }}</small>
 				</div>
 			</div>
 		</div>
