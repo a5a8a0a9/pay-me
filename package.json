@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=/pay-me/",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build --configuration=production --base-href=/pay-me/",
+    "watch": "ng build --watch --configuration=development",
     "test": "ng test",
     "format": "npx prettier . --write"
   },
