@@ -21,6 +21,7 @@
 		"useDefineForClassFields": false,
 		"lib": ["ES2022", "dom"],
 		"paths": {
+			"@service": ["src/app/service/index"]
 		}
 	},
 	"angularCompilerOptions": {
