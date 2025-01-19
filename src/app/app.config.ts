@@ -20,6 +20,10 @@ export const appConfig: ApplicationConfig = {
 				preset: NoirPreset,
 				options: {
 					darkModeSelector: '.yo-dark',
+					cssLayer: {
+						name: 'primeng',
+						order: 'tailwind-base, primeng, tailwind-utilities',
+					},
 				},
 			},
 		}),
