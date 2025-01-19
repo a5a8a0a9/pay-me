@@ -1,5 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 
@@ -11,7 +10,6 @@ import { NoirPreset } from './lib';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
-		importProvidersFrom(BrowserModule),
 		provideRouter(routes),
 		provideServiceWorker('ngsw-worker.js', {
 			enabled: environment.production,
