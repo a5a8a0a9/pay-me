@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '@service';
 import { ButtonModule } from 'primeng/button';
@@ -7,10 +8,29 @@ import { ButtonModule } from 'primeng/button';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 	standalone: true,
-	imports: [ButtonModule],
+	imports: [ButtonModule, NgClass],
 })
 export class AppComponent implements OnInit {
 	themeMode = 'light';
+
+	list = [
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+		{ id: 1 },
+	];
 
 	constructor(private themeService: ThemeService) {}
 
