@@ -10,15 +10,17 @@ import { ButtonModule } from 'primeng/button';
 	imports: [ButtonModule],
 })
 export class AppComponent implements OnInit {
-	themeMode = this.themeService.getTheme();
+	themeMode = 'light';
 
 	constructor(private themeService: ThemeService) {}
 
 	ngOnInit(): void {
 		this.themeService.init();
+		this.themeMode = this.themeService.getTheme();
 	}
 
 	toggleTheme() {
 		this.themeService.toggle();
+		this.themeMode = this.themeService.getTheme();
 	}
 }
