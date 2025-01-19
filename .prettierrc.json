@@ -5,6 +5,7 @@
 	"trailingComma": "es5",
 	"printWidth": 100,
 	"arrowParens": "avoid",
+	"plugins": ["prettier-plugin-tailwindcss"],
 	"overrides": [
 		{
 			"files": ["*.html"],
