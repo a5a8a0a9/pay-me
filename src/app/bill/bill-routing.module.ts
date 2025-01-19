@@ -5,12 +5,12 @@ import { BillComponent } from './bill.component';
 const routes: Routes = [
 	{
 		path: '',
-		component: BillComponent
-	}
+		component: BillComponent,
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class BillRoutingModule {}

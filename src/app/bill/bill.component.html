@@ -11,7 +11,11 @@
 			<div class="card" (click)="onDetailOpen(bill)">
 				<div class="card-header hstack justify-content-between">
 					<div>{{ bill.name }}</div>
-					<button type="button" class="btn btn-outline-danger btn-sm" (click)="$event.stopPropagation(); deleteBill(bill)">
+					<button
+						type="button"
+						class="btn btn-outline-danger btn-sm"
+						(click)="$event.stopPropagation(); deleteBill(bill)"
+					>
 						<i class="fa-fw fa-solid fa-trash"></i>
 					</button>
 				</div>
@@ -29,8 +33,6 @@
 							<i class="fa-fw fa-solid fa-shapes"></i>
 							{{ bill.list.length }}
 						</div>
-
-
 					</div>
 				</div>
 				<div class="card-footer text-end text-primary">

@@ -1,6 +1,11 @@
 <div class="modal-header">
 	<h4 class="modal-title">新增使用者</h4>
-	<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+	<button
+		type="button"
+		class="btn-close"
+		aria-label="Close"
+		(click)="activeModal.dismiss()"
+	></button>
 </div>
 
 <div class="modal-body">
@@ -14,13 +19,21 @@
 				</tr>
 			</thead>
 			<tbody formArrayName="list">
-				<tr *ngFor="let userForm of listForm.controls; let userIndex = index" [formGroupName]="userIndex">
+				<tr
+					*ngFor="let userForm of listForm.controls; let userIndex = index"
+					[formGroupName]="userIndex"
+				>
 					<td>{{ userIndex + 1 }}</td>
 					<td>
 						<input class="form-control form-control-sm" formControlName="name" placeholder="名稱" />
 					</td>
 					<td>
-						<button type="button" class="btn btn-outline-danger btn-sm" tabindex="-1" (click)="removeUser(userIndex)">
+						<button
+							type="button"
+							class="btn btn-outline-danger btn-sm"
+							tabindex="-1"
+							(click)="removeUser(userIndex)"
+						>
 							<i class="fa-solid fa-trash"></i>
 						</button>
 					</td>

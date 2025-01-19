@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class BillService {
 	private listSubject: BehaviorSubject<any[]> = new BehaviorSubject([] as any[]);

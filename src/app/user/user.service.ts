@@ -3,7 +3,7 @@ import { Group, User } from '@shared/interface';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class UserService {
 	private userListSubject: BehaviorSubject<User[]> = new BehaviorSubject([] as User[]);

@@ -1,13 +1,21 @@
 <div class="modal-header">
 	<h4 class="modal-title">活動詳細</h4>
-	<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+	<button
+		type="button"
+		class="btn-close"
+		aria-label="Close"
+		(click)="activeModal.dismiss()"
+	></button>
 </div>
 <div class="modal-body">
 	<h3>{{ bill.name }}</h3>
 	<p>{{ bill.memo }}</p>
 	<hr />
 	<ol class="list-group">
-		<li *ngFor="let item of bill.list" class="list-group-item d-flex justify-content-between align-items-start">
+		<li
+			*ngFor="let item of bill.list"
+			class="list-group-item d-flex justify-content-between align-items-start"
+		>
 			<div class="ms-2 me-auto">
 				<div>
 					<i class="fa-fw fa-solid fa-shapes"></i>

@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
 	selector: 'yo-bill',
 	templateUrl: './bill.component.html',
-	styleUrls: ['./bill.component.scss']
+	styleUrls: ['./bill.component.scss'],
 })
 export class BillComponent implements OnInit {
 	billList$ = this.billService.list$;
@@ -28,7 +28,7 @@ export class BillComponent implements OnInit {
 			text: '',
 			showCancelButton: true,
 			confirmButtonText: '確定',
-			cancelButtonText: '取消'
+			cancelButtonText: '取消',
 		});
 		if (!isConfirmed) return;
 		this.billService.delete(bill);
@@ -39,7 +39,7 @@ export class BillComponent implements OnInit {
 			centered: true,
 			scrollable: true,
 			size: 'lg',
-			backdrop: 'static'
+			backdrop: 'static',
 		});
 	}
 
@@ -47,7 +47,7 @@ export class BillComponent implements OnInit {
 		const modalRef = this.modalService.open(DetailComponent, {
 			centered: true,
 			scrollable: true,
-			size: 'lg'
+			size: 'lg',
 		});
 		modalRef.componentInstance.bill = bill;
 	}

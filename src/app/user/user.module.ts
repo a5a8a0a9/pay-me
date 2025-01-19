@@ -7,6 +7,6 @@ import { EditComponent } from './modal/edit/edit.component';
 
 @NgModule({
 	declarations: [UserComponent, EditComponent],
-	imports: [SharedModule, UserRoutingModule]
+	imports: [SharedModule, UserRoutingModule],
 })
 export class UserModule {}

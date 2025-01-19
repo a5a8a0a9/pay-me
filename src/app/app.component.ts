@@ -11,20 +11,20 @@ interface PageMenu {
 @Component({
 	selector: 'yo-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
 	menuList: PageMenu[] = [
 		{
 			id: 'bill',
 			path: '/bill',
-			name: '帳單'
+			name: '帳單',
 		},
 		{
 			id: 'user',
 			path: '/user',
-			name: '使用者'
-		}
+			name: '使用者',
+		},
 	];
 
 	currentUrl: string = '';
@@ -35,8 +35,10 @@ export class AppComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.router.events.pipe(filter(response => response instanceof NavigationEnd)).subscribe(response => {
-			this.currentUrl = (response as NavigationEnd).urlAfterRedirects;
-		});
+		this.router.events
+			.pipe(filter(response => response instanceof NavigationEnd))
+			.subscribe(response => {
+				this.currentUrl = (response as NavigationEnd).urlAfterRedirects;
+			});
 	}
 }

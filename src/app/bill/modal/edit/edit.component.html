@@ -1,6 +1,11 @@
 <div class="modal-header">
 	<h4 class="modal-title">新增活動</h4>
-	<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+	<button
+		type="button"
+		class="btn-close"
+		aria-label="Close"
+		(click)="activeModal.dismiss()"
+	></button>
 </div>
 <div class="modal-body">
 	<form [formGroup]="form">
@@ -25,17 +30,34 @@
 					class="border rounded w-100"
 					style="display: grid; grid-template-columns: 50px 1fr 50px"
 				>
-					<div class="vstack align-items-center justify-content-center p-2 border-end">#{{ itemIndex + 1 }}</div>
+					<div class="vstack align-items-center justify-content-center p-2 border-end">
+						#{{ itemIndex + 1 }}
+					</div>
 					<div class="px-3 py-2">
 						<div class="row g-2">
 							<div class="col-md-4">
-								<input formControlName="user" type="text" class="form-control form-control-sm" placeholder="誰出的" />
+								<input
+									formControlName="user"
+									type="text"
+									class="form-control form-control-sm"
+									placeholder="誰出的"
+								/>
 							</div>
 							<div class="col-md-4">
-								<input formControlName="item" type="text" class="form-control form-control-sm" placeholder="買什麼" />
+								<input
+									formControlName="item"
+									type="text"
+									class="form-control form-control-sm"
+									placeholder="買什麼"
+								/>
 							</div>
 							<div class="col-md-4">
-								<input formControlName="money" type="number" class="form-control form-control-sm" placeholder="多少錢" />
+								<input
+									formControlName="money"
+									type="number"
+									class="form-control form-control-sm"
+									placeholder="多少錢"
+								/>
 							</div>
 						</div>
 					</div>

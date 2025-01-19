@@ -7,7 +7,7 @@
 		"build": "ng build --base-href=/pay-me/",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
-		"prepare": "husky"
+		"format": "npx prettier . --write"
 	},
 	"private": true,
 	"dependencies": {
