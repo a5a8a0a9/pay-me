@@ -1,13 +1,1 @@
-<div class="sticky-top bg-light px-3 py-2 border-bottom border-2">
-	<ul class="nav nav-pills justify-content-end">
-		<li *ngFor="let menu of menuList" class="nav-item">
-			<a class="nav-link" [class.active]="currentUrl.includes(menu.path)" [routerLink]="menu.path">
-				{{ menu.name }}
-			</a>
-		</li>
-	</ul>
-</div>
-
-<div class="h-100 overflow-auto">
-	<router-outlet></router-outlet>
-</div>
+app works
