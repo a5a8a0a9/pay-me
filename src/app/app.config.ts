@@ -4,6 +4,8 @@ import { provideServiceWorker } from '@angular/service-worker';
 
 import { providePrimeNG } from 'primeng/config';
 
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import { NoirPreset } from './lib';
@@ -27,5 +29,7 @@ export const appConfig: ApplicationConfig = {
 				},
 			},
 		}),
+		provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+		provideFirestore(() => getFirestore()),
 	],
 };
