@@ -8,7 +8,7 @@
     "esModuleInterop": true,
 		"strict": true,
 		"noImplicitOverride": true,
-		"noPropertyAccessFromIndexSignature": true,
+		"noPropertyAccessFromIndexSignature": false,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"sourceMap": true,
@@ -21,7 +21,9 @@
 		"useDefineForClassFields": false,
 		"lib": ["ES2022", "dom"],
 		"paths": {
-			"@service": ["src/app/service/index"]
+			"@service": ["src/app/service/index"],
+			"@class": ["src/app/class/index"],
+			"@bill/*": ["src/app/bill/*"],
 		}
 	},
 	"angularCompilerOptions": {
