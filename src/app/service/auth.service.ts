@@ -14,12 +14,6 @@ export class AuthService {
 
 	constructor() {}
 
-	onAuthStateChanged() {
-		// onAuthStateChanged(this.auth, user => {
-		// 	console.log(user);
-		// });
-	}
-
 	async signinGoogle() {
 		const authResponse = await signInWithPopup(this.auth, this.googleAuthProvider);
 		const credential = GoogleAuthProvider.credentialFromResult(authResponse);
