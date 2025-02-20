@@ -1,0 +1,54 @@
+<p-dialog
+	[(visible)]="visible"
+	header="建立帳單"
+	[modal]="true"
+	[draggable]="false"
+	[style]="{ width: '600px' }"
+	(onHide)="hide.emit()"
+>
+	<form [formGroup]="form" class="grid grid-cols-12 gap-2">
+		<div class="col-span-12">
+			<label class="mb-1">標題</label>
+			<div>
+				<input pInputText formControlName="title" type="text" placeholder="標題" class="w-full" />
+			</div>
+		</div>
+		<div class="col-span-12">
+			<label class="mb-1">參與者</label>
+			<div formArrayName="participants" class="flex flex-col gap-2">
+				@for (
+					participantForm of participantFormList.controls;
+					track $index;
+					let participantIndex = $index
+				) {
+					<div [formGroupName]="participantIndex" class="flex items-center gap-2">
+						<input pInputText formControlName="name" type="text" placeholder="參與者" />
+						@if (participantIndex !== 0) {
+							<p-button
+								variant="text"
+								severity="danger"
+								icon="pi pi-trash"
+								(onClick)="removeParticipants(participantIndex)"
+							></p-button>
+						}
+					</div>
+				}
+
+				<div>
+					<p-button
+						variant="text"
+						severity="secondary"
+						icon="pi pi-plus"
+						label="新增"
+						(onClick)="addParticipants()"
+					></p-button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<ng-template #footer>
+		<p-button label="Cancel" severity="secondary" (onClick)="hide.emit()" />
+		<p-button label="Save" (onClick)="save()" />
+	</ng-template>
+</p-dialog>
