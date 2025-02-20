@@ -1,6 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
-import { addDoc, collection, collectionData, Firestore } from '@angular/fire/firestore';
+import {
+	addDoc,
+	collection,
+	collectionData,
+	deleteDoc,
+	doc,
+	Firestore,
+} from '@angular/fire/firestore';
 
 @Injectable({
 	providedIn: 'root',
@@ -11,18 +18,16 @@ export class AccessService {
 
 	constructor() {}
 
-	async getList() {
-		const users = collection(this.firestore, 'users');
-
-		collectionData(users).subscribe(res => {
-			console.log(res);
-		});
+	getDocList(path: string) {
+		const clt = collection(this.firestore, path);
+		return collectionData(clt, { idField: 'id' });
 	}
 
-	async add() {
-		const user = await addDoc(collection(this.firestore, 'users'), {
-			name: 'hehe',
-		});
-		console.log(user);
+	createDoc(path: string, data: any) {
+		return addDoc(collection(this.firestore, path), data);
+	}
+
+	deleteDoc(path: string, id: string) {
+		return deleteDoc(doc(this.firestore, path, id));
 	}
 }
