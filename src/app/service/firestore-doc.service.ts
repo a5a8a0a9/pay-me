@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 @Injectable({
 	providedIn: 'root',
 })
-export class AccessService {
+export class FirestoreDocService {
 	private _firestore: Firestore = inject(Firestore);
 
 	constructor() {}

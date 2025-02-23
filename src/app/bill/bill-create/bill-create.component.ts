@@ -1,3 +1,4 @@
+import { AccessService } from '@access';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import {
@@ -8,7 +9,6 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { BillService } from '@bill/bill.service';
 import { BillEdit } from '@model';
 import { FormService } from '@service';
 import { ButtonModule } from 'primeng/button';
@@ -50,7 +50,7 @@ export class BillCreateComponent {
 	constructor(
 		private formBuilder: FormBuilder,
 		private formService: FormService,
-		private billService: BillService
+		private accessService: AccessService
 	) {}
 
 	addParticipants() {
@@ -82,7 +82,7 @@ export class BillCreateComponent {
 
 	async saveBills(request: any) {
 		try {
-			await this.billService.createBill(request);
+			await this.accessService.bill.createBill(request);
 			this.hide.emit();
 		} catch (e) {
 			console.log(e);

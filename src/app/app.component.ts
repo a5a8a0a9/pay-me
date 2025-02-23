@@ -1,7 +1,7 @@
+import { AccessService } from '@access';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BillCreateComponent } from '@bill/bill-create/bill-create.component';
-import { BillService } from '@bill/bill.service';
 import { DialogControl } from '@class';
 import { ConfirmService, ThemeService } from '@service';
 import { ButtonModule } from 'primeng/button';
@@ -27,14 +27,14 @@ import { ToastModule } from 'primeng/toast';
 export class AppComponent implements OnInit {
 	themeMode = 'light';
 
-	bills$ = this.billService.getBillList();
+	bills$ = this.accessService.bill.getBillList();
 
 	billCreateCtrl = new DialogControl();
 
 	constructor(
 		private themeService: ThemeService,
 		private confirmService: ConfirmService,
-		private billService: BillService
+		private accessService: AccessService
 	) {}
 
 	ngOnInit(): void {
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
 			option: {
 				accept: async () => {
 					try {
-						await this.billService.deleteBill(id);
+						await this.accessService.bill.deleteBill(id);
 					} catch (e) {
 						console.log(e);
 					}

@@ -21,6 +21,7 @@
 		"useDefineForClassFields": false,
 		"lib": ["ES2022", "dom"],
 		"paths": {
+			"@access": ["src/app/access/access.service"],
 			"@service": ["src/app/service/index"],
 			"@class": ["src/app/class/index"],
 			"@model": ["src/app/model/index"],
