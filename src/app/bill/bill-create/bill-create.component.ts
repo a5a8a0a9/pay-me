@@ -8,7 +8,9 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { AccessService, AuthService, FormService } from '@service';
+import { BillService } from '@bill/bill.service';
+import { BillEdit } from '@model';
+import { FormService } from '@service';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
@@ -47,9 +49,8 @@ export class BillCreateComponent {
 
 	constructor(
 		private formBuilder: FormBuilder,
-		private authService: AuthService,
-		private accessService: AccessService,
-		private formService: FormService
+		private formService: FormService,
+		private billService: BillService
 	) {}
 
 	addParticipants() {
@@ -67,22 +68,21 @@ export class BillCreateComponent {
 		this.formService.validate(this.form).subscribe({
 			next: () => {
 				const formValue = this.form.getRawValue();
-				const request = {
-					title: formValue.title,
-					participants: formValue.participants.map(item => item.name),
+				const request: BillEdit = {
+					title: formValue.title!,
+					participants: formValue.participants.map(item => item.name!),
 					createdAt: Timestamp.now(),
 					ownerId: 'young',
 				};
 
 				this.saveBills(request);
-				console.log(request);
 			},
 		});
 	}
 
 	async saveBills(request: any) {
 		try {
-			await this.accessService.createDoc('bills', request);
+			await this.billService.createBill(request);
 			this.hide.emit();
 		} catch (e) {
 			console.log(e);

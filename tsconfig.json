@@ -23,6 +23,7 @@
 		"paths": {
 			"@service": ["src/app/service/index"],
 			"@class": ["src/app/class/index"],
+			"@model": ["src/app/model/index"],
 			"@bill/*": ["src/app/bill/*"],
 		}
 	},
