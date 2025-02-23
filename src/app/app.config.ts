@@ -7,13 +7,14 @@ import { providePrimeNG } from 'primeng/config';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import { NoirPreset } from './lib';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
+		ConfirmationService,
 		MessageService,
 		provideAnimationsAsync(),
 		provideRouter(routes),
