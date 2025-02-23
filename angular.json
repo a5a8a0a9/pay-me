@@ -40,7 +40,8 @@
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
 						"outputPath": {
-							"base": "dist"
+							"base": "dist",
+							"browser": ""
 						},
 						"index": "src/index.html",
 						"polyfills": ["zone.js"],
@@ -59,13 +60,11 @@
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "500kb",
-									"maximumError": "1mb"
+									"maximumWarning": "500kb"
 								},
 								{
 									"type": "anyComponentStyle",
-									"maximumWarning": "2kb",
-									"maximumError": "4kb"
+									"maximumWarning": "2kb"
 								}
 							],
 							"fileReplacements": [
