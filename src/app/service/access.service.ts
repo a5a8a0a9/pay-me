@@ -1,33 +1,48 @@
 import { inject, Injectable } from '@angular/core';
-import { GoogleAuthProvider } from '@angular/fire/auth';
 import {
 	addDoc,
 	collection,
 	collectionData,
 	deleteDoc,
 	doc,
+	docData,
 	Firestore,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AccessService {
-	firestore: Firestore = inject(Firestore);
-	googleAuthProvider = new GoogleAuthProvider();
+	private _firestore: Firestore = inject(Firestore);
 
 	constructor() {}
 
-	getDocList(path: string) {
-		const clt = collection(this.firestore, path);
-		return collectionData(clt, { idField: 'id' });
+	getDocList(pathList: string[]): Observable<any[]> {
+		const [path, ...pathSegment] = pathList;
+		const collectionRef = collection(this._firestore, path, ...pathSegment);
+
+		return collectionData(collectionRef, { idField: 'id' });
 	}
 
-	createDoc(path: string, data: any) {
-		return addDoc(collection(this.firestore, path), data);
+	getDoc(pathList: string[], id: string): Observable<any> {
+		const [path, ...pathSegment] = pathList;
+		const docRef = doc(this._firestore, path, ...pathSegment, id);
+
+		return docData(docRef);
 	}
 
-	deleteDoc(path: string, id: string) {
-		return deleteDoc(doc(this.firestore, path, id));
+	createDoc(pathList: string[], data: any): Promise<any> {
+		const [path, ...pathSegment] = pathList;
+		const collectionRef = collection(this._firestore, path, ...pathSegment);
+
+		return addDoc(collectionRef, data);
+	}
+
+	deleteDoc(pathList: string[], id: string): Promise<void> {
+		const [path, ...pathSegment] = pathList;
+		const docRef = doc(this._firestore, path, ...pathSegment, id);
+
+		return deleteDoc(docRef);
 	}
 }
