@@ -1,6 +1,7 @@
 # PayMe
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+本專案使用 angular v19.1.1
+NodeJs 使用 v18.19.1
 
 ## Development server
 
