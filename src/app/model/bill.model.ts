@@ -1,4 +1,3 @@
-import { Timestamp } from '@angular/fire/firestore';
 /**
  * 帳單
  */
@@ -22,9 +21,9 @@ export interface Bill {
 	ownerId: string;
 }
 
-export type BillEdit = {
+export interface BillEdit {
 	title: string;
 	participants: string[];
-	createdAt: Timestamp;
+	createdAt: string;
 	ownerId: string;
-};
+}
