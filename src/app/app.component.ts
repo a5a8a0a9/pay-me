@@ -1,11 +1,7 @@
-import { AccessService } from '@access';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { BillCreateComponent } from '@bill/bill-create/bill-create.component';
-import { DialogControl } from '@class';
-import { ConfirmService, ThemeService } from '@service';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
+import { RouterOutlet } from '@angular/router';
+import { ThemeService } from '@service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 
@@ -14,28 +10,12 @@ import { ToastModule } from 'primeng/toast';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 	standalone: true,
-	imports: [
-		ButtonModule,
-		CardModule,
-		ToastModule,
-		ConfirmDialogModule,
-		NgClass,
-		BillCreateComponent,
-		AsyncPipe,
-	],
+	imports: [ToastModule, ConfirmDialogModule, NgClass, RouterOutlet],
 })
 export class AppComponent implements OnInit {
 	themeMode = 'light';
 
-	bills$ = this.accessService.bill.getBillList();
-
-	billCreateCtrl = new DialogControl();
-
-	constructor(
-		private themeService: ThemeService,
-		private confirmService: ConfirmService,
-		private accessService: AccessService
-	) {}
+	constructor(private themeService: ThemeService) {}
 
 	ngOnInit(): void {
 		this.themeService.init();
@@ -45,20 +25,5 @@ export class AppComponent implements OnInit {
 	toggleTheme() {
 		this.themeService.toggle();
 		this.themeMode = this.themeService.getTheme();
-	}
-
-	async deleteBill(id: string) {
-		this.confirmService.confirm({
-			type: 'delete',
-			option: {
-				accept: async () => {
-					try {
-						await this.accessService.bill.deleteBill(id);
-					} catch (e) {
-						console.log(e);
-					}
-				},
-			},
-		});
 	}
 }
