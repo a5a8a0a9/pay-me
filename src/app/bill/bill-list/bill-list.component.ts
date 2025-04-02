@@ -1,6 +1,7 @@
 import { AccessService } from '@access';
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { BillCreateComponent } from '@bill/bill-create/bill-create.component';
 import { DialogControl } from '@class';
 import { ConfirmService } from '@service';
@@ -9,7 +10,7 @@ import { CardModule } from 'primeng/card';
 
 @Component({
 	selector: 'yo-bill-list',
-	imports: [AsyncPipe, CardModule, ButtonModule, BillCreateComponent],
+	imports: [AsyncPipe, CardModule, ButtonModule, RouterLink, BillCreateComponent],
 	templateUrl: './bill-list.component.html',
 	styleUrl: './bill-list.component.scss',
 })

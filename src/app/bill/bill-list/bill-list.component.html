@@ -1,4 +1,4 @@
-<div class="relative flex flex-col gap-3">
+<div class="relative flex flex-col gap-3 p-3">
 	<div class="flex items-center justify-between">
 		<div>
 			<h1>帳單</h1>
@@ -12,7 +12,7 @@
 	<div class="grid grid-cols-12 gap-3">
 		@for (bill of bills$ | async; track $index) {
 			<div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3">
-				<p-card styleClass="w-full cursor-pointer">
+				<p-card styleClass="w-full cursor-pointer" [routerLink]="['/bill', bill.id]">
 					<ng-template #title>
 						<div class="overflow-hidden truncate">
 							{{ bill.title }}
