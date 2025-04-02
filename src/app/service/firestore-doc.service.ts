@@ -29,7 +29,7 @@ export class FirestoreDocService {
 		const [path, ...pathSegment] = pathList;
 		const docRef = doc(this._firestore, path, ...pathSegment, id);
 
-		return docData(docRef);
+		return docData(docRef, { idField: 'id' });
 	}
 
 	createDoc(pathList: string[], data: any): Promise<any> {
