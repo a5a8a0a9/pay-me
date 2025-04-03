@@ -1,6 +1,5 @@
 import { AccessService } from '@access';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Timestamp } from '@angular/fire/firestore';
 import {
 	FormArray,
 	FormBuilder,
@@ -71,7 +70,7 @@ export class BillCreateComponent {
 				const request: BillEdit = {
 					title: formValue.title!,
 					participants: formValue.participants.map(item => item.name!),
-					createdAt: Timestamp.now(),
+					createdAt: '2025-01-01',
 					ownerId: 'young',
 				};
 

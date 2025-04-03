@@ -1,20 +1,23 @@
 import { AccessService } from '@access';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { BillCreateComponent } from '@bill/bill-create/bill-create.component';
 import { DialogControl } from '@class';
+import { Bill } from '@model';
 import { ConfirmService } from '@service';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'yo-bill-list',
-	imports: [AsyncPipe, CardModule, ButtonModule, BillCreateComponent],
+	imports: [AsyncPipe, DatePipe, CardModule, ButtonModule, RouterLink, BillCreateComponent],
 	templateUrl: './bill-list.component.html',
 	styleUrl: './bill-list.component.scss',
 })
 export class BillListComponent {
-	bills$ = this.accessService.bill.getBillList();
+	bills$: Observable<Bill[] | null> = this.accessService.bill.getBillList();
 
 	billCreateCtrl = new DialogControl();
 
