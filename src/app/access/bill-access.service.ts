@@ -14,7 +14,7 @@ export class BillAccessService {
 
 	constructor(private firestoreDocService: FirestoreDocService) {}
 
-	getBillList() {
+	getBillList(): Observable<Bill[]> {
 		return this.firestoreDocService.getDocList([this.keys.bills]);
 	}
 

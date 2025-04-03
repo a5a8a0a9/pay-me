@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
 	styleUrl: './bill-list.component.scss',
 })
 export class BillListComponent {
-	bills$: Observable<Bill[]> = this.accessService.bill.getBillList();
+	bills$: Observable<Bill[] | null> = this.accessService.bill.getBillList();
 
 	billCreateCtrl = new DialogControl();
 
