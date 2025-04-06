@@ -5,19 +5,6 @@
 	</div>
 	@if (bill) {
 		<div class="p-3">
-			<!-- <p>
-				<i class="fa-fw fa-solid fa-calendar"></i>
-				{{ bill.createdAt | date: 'yyyy-MM-dd' }}
-			</p>
-
-			<div class="flex flex-wrap gap-1">
-				@for (participant of bill.participants; track $index) {
-					<p-tag [value]="participant" />
-				}
-			</div>
-
-			<p-divider></p-divider> -->
-
 			<p-tabs value="detail">
 				<p-tablist>
 					<p-tab value="detail">付款資訊</p-tab>
