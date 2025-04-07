@@ -9,7 +9,7 @@ import {
 	Validators,
 } from '@angular/forms';
 import { BillEdit } from '@model';
-import { FormService } from '@service';
+import { FormService } from '@shared/service';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
