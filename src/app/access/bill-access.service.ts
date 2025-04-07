@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Bill, BillEdit, Expense } from '@model';
-import { FirestoreDocService } from '@service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -12,25 +11,21 @@ export class BillAccessService {
 		expenses: 'expenses',
 	};
 
-	constructor(private firestoreDocService: FirestoreDocService) {}
+	constructor() {}
 
 	getBillList(): Observable<Bill[]> {
-		return this.firestoreDocService.getDocList([this.keys.bills]);
+		return of([]);
 	}
 
-	getBill(id: string): Observable<Bill> {
-		return this.firestoreDocService.getDoc([this.keys.bills], id);
+	getBill(id: string): Observable<Bill | null> {
+		return of(null);
 	}
 
-	createBill(request: BillEdit) {
-		return this.firestoreDocService.createDoc([this.keys.bills], request);
-	}
+	createBill(request: BillEdit) {}
 
-	deleteBill(id: string) {
-		return this.firestoreDocService.deleteDoc([this.keys.bills], id);
-	}
+	deleteBill(id: string) {}
 
 	getExpenseList(billId: string): Observable<Expense[]> {
-		return this.firestoreDocService.getDocList([this.keys.bills, billId, this.keys.expenses]);
+		return of([]);
 	}
 }
