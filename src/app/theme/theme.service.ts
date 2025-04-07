@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ThemeMode } from '@model';
+import { ThemeMode } from './theme.model';
 
 @Injectable({
 	providedIn: 'root',
