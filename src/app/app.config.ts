@@ -3,13 +3,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 
-import { providePrimeNG } from 'primeng/config';
-
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { providePrimeNG } from 'primeng/config';
+
 import { environment } from '@environment';
 import { NoirPreset } from '@theme';
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {

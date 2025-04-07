@@ -7,13 +7,13 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { BillEdit } from '@model';
 import { FormService } from '@shared/service';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { BillAccessService } from '../bill-access.service';
+import { BillEdit } from '../bill.model';
 
 @Component({
 	selector: 'yo-bill-create',

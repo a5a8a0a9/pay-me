@@ -1,12 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Bill, Expense, Settlement } from '@model';
 import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs';
 import { forkJoin } from 'rxjs';
 import { BillAccessService } from '../bill-access.service';
+import { Bill, Expense, Settlement } from '../bill.model';
 import { BillService } from '../bill.service';
 
 @Component({

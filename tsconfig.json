@@ -24,10 +24,7 @@
 			"@environment": ["src/environments/environment"],
 			"@theme": ["src/app/theme/index"],
 			"@shared/*": ["src/app/shared/*"],
-			"@access": ["src/app/access/access.service"],
-			"@service": ["src/app/service/index"],
-			"@model": ["src/app/model/index"],
-			"@bill/*": ["src/app/bill/*"],
+			"@feature/*": ["src/app/feature/*"],
 		}
 	},
 	"angularCompilerOptions": {

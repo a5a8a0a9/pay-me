@@ -1,14 +1,14 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BillCreateComponent } from '@bill/bill-create/bill-create.component';
-import { Bill } from '@model';
 import { DialogControl } from '@shared/class';
 import { ConfirmService } from '@shared/service';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
 import { BillAccessService } from '../bill-access.service';
+import { BillCreateComponent } from '../bill-create/bill-create.component';
+import { Bill } from '../bill.model';
 
 @Component({
 	selector: 'yo-bill-list',
