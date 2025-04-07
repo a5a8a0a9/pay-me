@@ -3,6 +3,17 @@
 本專案使用 angular v19.1.1
 NodeJs 使用 v18.19.1
 
+## NPM
+
+如果你是第一次複製此專案，請使用 `npm ci` 來還原 `node_modules` ，可以確保你安裝的套件版本是一樣的。
+
+參考：
+
+- https://docs.npmjs.com/cli/v9/commands/npm-ci
+- https://hackmd.io/@mko123654/r1HWiA0K5
+
+如果有更新套件，package-lock.json 有更新，請一定要將 package-lock.json 的變更commit。
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

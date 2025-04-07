@@ -21,11 +21,10 @@
 		"useDefineForClassFields": false,
 		"lib": ["ES2022", "dom"],
 		"paths": {
-			"@access": ["src/app/access/access.service"],
-			"@service": ["src/app/service/index"],
-			"@class": ["src/app/class/index"],
-			"@model": ["src/app/model/index"],
-			"@bill/*": ["src/app/bill/*"],
+			"@environment": ["src/environments/environment"],
+			"@theme": ["src/app/theme/index"],
+			"@shared/*": ["src/app/shared/*"],
+			"@feature/*": ["src/app/feature/*"],
 		}
 	},
 	"angularCompilerOptions": {

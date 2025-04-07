@@ -1,4 +1,3 @@
-import { AccessService } from '@access';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
 	FormArray,
@@ -8,12 +7,13 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { BillEdit } from '@model';
-import { FormService } from '@service';
+import { FormService } from '@shared/service';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { BillAccessService } from '../bill-access.service';
+import { BillEdit } from '../bill.model';
 
 @Component({
 	selector: 'yo-bill-create',
@@ -49,7 +49,7 @@ export class BillCreateComponent {
 	constructor(
 		private formBuilder: FormBuilder,
 		private formService: FormService,
-		private accessService: AccessService
+		private billAccessService: BillAccessService
 	) {}
 
 	addParticipants() {
@@ -81,7 +81,7 @@ export class BillCreateComponent {
 
 	async saveBills(request: any) {
 		try {
-			await this.accessService.bill.createBill(request);
+			await this.billAccessService.createBill(request);
 			this.hide.emit();
 		} catch (e) {
 			console.log(e);

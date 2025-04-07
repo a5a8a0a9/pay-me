@@ -18,6 +18,7 @@ export class FormService {
 		return of(form.valid).pipe(
 			tap(() => {
 				this.markAsTouchedAndDirty(form);
+
 				form.invalid &&
 					this.messageService.add({
 						severity: 'warn',

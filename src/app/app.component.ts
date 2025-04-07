@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ThemeService } from '@service';
+import { ThemeService } from '@theme';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 
