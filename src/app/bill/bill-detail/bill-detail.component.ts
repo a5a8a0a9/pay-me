@@ -1,4 +1,3 @@
-import { AccessService } from '@access';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -7,6 +6,7 @@ import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs';
 import { forkJoin } from 'rxjs';
+import { BillAccessService } from '../bill-access.service';
 import { BillService } from '../bill.service';
 
 @Component({
@@ -25,15 +25,15 @@ export class BillDetailComponent implements OnInit {
 	constructor(
 		private billService: BillService,
 		private activatedRoute: ActivatedRoute,
-		private accessService: AccessService
+		private billAccessService: BillAccessService
 	) {}
 
 	ngOnInit(): void {
 		this.billId = this.activatedRoute.snapshot.params.id;
 
 		forkJoin([
-			this.accessService.bill.getBill(this.billId),
-			this.accessService.bill.getExpenseList(this.billId),
+			this.billAccessService.getBill(this.billId),
+			this.billAccessService.getExpenseList(this.billId),
 		]).subscribe(([bill, expenses]) => {
 			console.log(bill);
 			console.log(expenses);

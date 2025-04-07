@@ -1,4 +1,3 @@
-import { AccessService } from '@access';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -9,6 +8,7 @@ import { ConfirmService } from '@shared/service';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Observable } from 'rxjs';
+import { BillAccessService } from '../bill-access.service';
 
 @Component({
 	selector: 'yo-bill-list',
@@ -17,13 +17,13 @@ import { Observable } from 'rxjs';
 	styleUrl: './bill-list.component.scss',
 })
 export class BillListComponent {
-	bills$: Observable<Bill[] | null> = this.accessService.bill.getBillList();
+	bills$: Observable<Bill[] | null> = this.billAccessService.getBillList();
 
 	billCreateCtrl = new DialogControl();
 
 	constructor(
 		private confirmService: ConfirmService,
-		private accessService: AccessService
+		private billAccessService: BillAccessService
 	) {}
 
 	async deleteBill(id: string) {
@@ -32,7 +32,7 @@ export class BillListComponent {
 			option: {
 				accept: async () => {
 					try {
-						await this.accessService.bill.deleteBill(id);
+						await this.billAccessService.deleteBill(id);
 					} catch (e) {
 						console.log(e);
 					}
