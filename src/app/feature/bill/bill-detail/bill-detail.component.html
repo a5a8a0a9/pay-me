@@ -44,6 +44,11 @@
 										<span>{{ expense.occurrenceTime | date: 'yyyy-MM-dd' }}</span>
 									</ng-template>
 
+									<p>
+										<i class="fa-fw fa-solid fa-coins"></i>
+										{{ 'NT$ ' + expense.amount }}
+									</p>
+
 									<p>{{ expense.memo }}</p>
 
 									<div class="flex flex-col gap-2"></div>
