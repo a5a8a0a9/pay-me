@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BillDetail } from '@shared/model';
 import { StorageService } from '@shared/service';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -25,11 +25,48 @@ export class BillAccessService {
 			.pipe(map(billList => billList?.find(bill => bill.id === id) || null));
 	}
 
-	createBill(request: any) {}
+	createBill(request: BillDetail) {
+		return this.storageService.getItem<BillDetail[]>(this.KEY_MAP.billList).pipe(
+			map(billList => {
+				if (!billList) {
+					billList = [];
+				}
+				billList.push(request);
+				return billList;
+			}),
+			map(billList => this.storageService.setItem<BillDetail[]>(this.KEY_MAP.billList, billList))
+		);
+	}
 
-	deleteBill(id: string) {}
+	updateBill(request: BillDetail) {
+		return this.storageService.getItem<BillDetail[]>(this.KEY_MAP.billList).pipe(
+			map(billList => {
+				if (!billList) {
+					billList = [];
+				}
+				const index = billList.findIndex(bill => bill.id === request.id);
+				if (index !== -1) {
+					billList[index] = request;
+				}
+				return billList;
+			}),
+			map(billList => this.storageService.setItem<BillDetail[]>(this.KEY_MAP.billList, billList))
+		);
+	}
 
-	getExpenseList(billId: string): Observable<any[]> {
-		return of([]);
+	deleteBill(id: string) {
+		return this.storageService.getItem<BillDetail[]>(this.KEY_MAP.billList).pipe(
+			map(billList => {
+				if (!billList) {
+					return [];
+				}
+				const index = billList.findIndex(bill => bill.id === id);
+				if (index !== -1) {
+					billList.splice(index, 1);
+				}
+				return billList;
+			}),
+			map(billList => this.storageService.setItem<BillDetail[]>(this.KEY_MAP.billList, billList))
+		);
 	}
 }

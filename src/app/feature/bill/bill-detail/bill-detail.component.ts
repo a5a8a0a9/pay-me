@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Bill, Expense } from '@shared/model';
+import { BillDetail, Expense } from '@shared/model';
 import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs';
+import { BillAccessService } from '../bill-access.service';
 
 @Component({
 	selector: 'yo-bill-detail',
@@ -15,12 +16,28 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs';
 export class BillDetailComponent implements OnInit {
 	billId: string = '';
 
-	bill: Bill | null = null;
+	bill: BillDetail | null = null;
 	expenses: Expense[] = [];
 
-	constructor(private activatedRoute: ActivatedRoute) {}
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		private billAccessService: BillAccessService
+	) {}
 
 	ngOnInit(): void {
 		this.billId = this.activatedRoute.snapshot.params.id;
+
+		this.getBillDetail(this.billId);
+	}
+
+	getBillDetail(billId: string) {
+		this.billAccessService.getBill(billId).subscribe({
+			next: bill => {
+				this.bill = bill;
+			},
+			error: err => {
+				console.log(err);
+			},
+		});
 	}
 }
