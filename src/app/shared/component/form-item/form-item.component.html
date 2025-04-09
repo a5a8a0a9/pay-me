@@ -1,0 +1,11 @@
+<div class="yo-form-item" [ngClass]="styleClass" [ngStyle]="style">
+	@if (!!label) {
+		<yo-form-label [required]="hasValidator_required() || required" [label]="label"></yo-form-label>
+	}
+
+	<ng-content></ng-content>
+
+	@if (invalid) {
+		<yo-form-error [control]="control"></yo-form-error>
+	}
+</div>

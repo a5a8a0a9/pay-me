@@ -1,54 +1,59 @@
 <div class="relative">
 	<div class="flex flex-wrap items-center gap-3 border-b p-3">
 		<p-button icon="pi pi-angle-left" size="small" [outlined]="true" [routerLink]="['/bill']" />
-		<h1 class="text-xl font-bold">{{ bill?.title }}</h1>
+		<h1 class="text-xl font-bold">{{ bill?.name }}</h1>
 	</div>
 	@if (bill) {
 		<div class="p-3">
-			<p-tabs value="detail">
+			<p-tabs value="expense">
 				<p-tablist>
-					<p-tab value="detail">付款資訊</p-tab>
+					<p-tab value="expense">付款資訊</p-tab>
 					<p-tab value="settlement">結餘</p-tab>
 				</p-tablist>
 
 				<p-tabpanels>
-					<p-tabpanel value="detail">
+					<p-tabpanel value="expense">
 						<div class="flex flex-col gap-3">
-							@for (expense of expenses; track $index) {
+							@for (expense of bill.expenseList; track $index) {
 								<p-card>
 									<ng-template #title>
 										<div>
-											{{ expense.description }}
+											{{ expense.memo }}
 										</div>
 									</ng-template>
 
 									<ng-template #subtitle>
 										<i class="fa-fw fa-solid fa-clock"></i>
-										<span>{{ expense.date | date: 'yyyy-MM-dd' }}</span>
+										<span>{{ expense.occurrenceTime | date: 'yyyy-MM-dd' }}</span>
 									</ng-template>
 
 									<div class="flex flex-col gap-2">
-										<div>
-											<!-- <i class="fa-fw fa-solid fa-person" aria-hidden="true"></i> -->
+										<!-- <div>
 											{{ expense.payer }} 先付 NT${{ expense.amount }}
-										</div>
+										</div> -->
 									</div>
 								</p-card>
+							} @empty {
+								<div class="text-center">
+									<p-button icon="pi pi-plus" label="新增付款資訊" severity="primary" />
+								</div>
 							}
 						</div>
 					</p-tabpanel>
 
 					<p-tabpanel value="settlement">
 						<div class="flex flex-col gap-3">
-							@for (settlement of settlements; track $index) {
+							<!-- @for (balance of bill.balanceList; track $index) {
 								<p-card>
 									{{ settlement.from }} 需支付 {{ settlement.to }} NT${{ settlement.amount }}
 								</p-card>
-							}
+							} -->
 						</div>
 					</p-tabpanel>
 				</p-tabpanels>
 			</p-tabs>
 		</div>
+	} @else {
+		<div class="p-3 text-center text-red-500">無法取得帳單資訊</div>
 	}
 </div>

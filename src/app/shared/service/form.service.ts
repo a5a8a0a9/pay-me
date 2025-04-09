@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { filter, Observable, of, tap } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
 	providedIn: 'root',
@@ -28,5 +29,9 @@ export class FormService {
 			}),
 			filter(isValid => isValid)
 		);
+	}
+
+	generateId(): string {
+		return uuidv4();
 	}
 }

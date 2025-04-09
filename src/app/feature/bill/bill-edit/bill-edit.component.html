@@ -1,0 +1,56 @@
+<p-dialog
+	[(visible)]="visible"
+	[header]="data?.isEdit ? '編輯帳單' : '建立帳單'"
+	[modal]="true"
+	[draggable]="false"
+	[style]="{ width: '600px' }"
+	(onHide)="hide.emit()"
+>
+	<form [formGroup]="form" class="grid grid-cols-12 gap-2">
+		<yo-form-item [control]="form.controls.name" label="標題" class="col-span-12">
+			<input pInputText formControlName="name" type="text" placeholder="標題" class="w-full" />
+		</yo-form-item>
+
+		<yo-form-item [control]="form.controls.memo" label="說明" class="col-span-12">
+			<textarea pTextarea formControlName="memo" placeholder="說明" class="w-full"></textarea>
+		</yo-form-item>
+
+		<div class="col-span-12">
+			<h5 class="mb-1">參與者</h5>
+
+			<div formArrayName="userList" class="flex flex-col gap-2">
+				@for (userForm of userFormList.controls; track $index; let userIndex = $index) {
+					<div [formGroupName]="userIndex" class="flex items-center gap-2">
+						<yo-form-item [control]="form.controls.memo">
+							<input pInputText formControlName="name" type="text" placeholder="參與者" />
+						</yo-form-item>
+
+						@if (userIndex !== 0) {
+							<p-button
+								variant="text"
+								severity="danger"
+								icon="pi pi-trash"
+								(onClick)="removeUser(userIndex)"
+							></p-button>
+						}
+					</div>
+				}
+
+				<div>
+					<p-button
+						variant="text"
+						severity="secondary"
+						icon="pi pi-plus"
+						label="新增"
+						(onClick)="addUser()"
+					></p-button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<ng-template #footer>
+		<p-button label="取消" severity="secondary" (onClick)="hide.emit()" />
+		<p-button label="儲存" (onClick)="save()" />
+	</ng-template>
+</p-dialog>

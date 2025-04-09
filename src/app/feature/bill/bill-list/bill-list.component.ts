@@ -1,38 +1,62 @@
-import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DialogControl } from '@shared/class';
+import { BillDetail } from '@shared/model';
 import { ConfirmService } from '@shared/service';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { Observable } from 'rxjs';
 import { BillAccessService } from '../bill-access.service';
-import { BillCreateComponent } from '../bill-create/bill-create.component';
-import { Bill } from '../bill.model';
+import { BillEditComponent } from '../bill-edit/bill-edit.component';
 
 @Component({
 	selector: 'yo-bill-list',
-	imports: [AsyncPipe, DatePipe, CardModule, ButtonModule, RouterLink, BillCreateComponent],
+	imports: [DatePipe, CardModule, ButtonModule, BillEditComponent, RouterLink],
 	templateUrl: './bill-list.component.html',
 	styleUrl: './bill-list.component.scss',
 })
-export class BillListComponent {
-	bills$: Observable<Bill[] | null> = this.billAccessService.getBillList();
+export class BillListComponent implements OnInit {
+	billList: BillDetail[] = [];
 
-	billCreateCtrl = new DialogControl();
+	billEditCtrl = new DialogControl<{ billId: string; isEdit: boolean } | null>();
 
 	constructor(
 		private confirmService: ConfirmService,
 		private billAccessService: BillAccessService
 	) {}
 
-	async deleteBill(id: string) {
+	ngOnInit(): void {
+		this.getBillList();
+	}
+
+	getBillList() {
+		this.billList = [];
+
+		this.billAccessService.getBillList().subscribe({
+			next: billList => {
+				this.billList = billList || [];
+			},
+			error: err => {
+				console.log(err);
+			},
+		});
+	}
+
+	async deleteBill(bill: BillDetail) {
 		this.confirmService.confirm({
 			type: 'delete',
 			option: {
+				message: `確定要刪除「${bill.name}」嗎?`,
 				accept: async () => {
 					try {
-						await this.billAccessService.deleteBill(id);
+						this.billAccessService.deleteBill(bill.id).subscribe({
+							next: () => {
+								this.getBillList();
+							},
+							error: err => {
+								console.log(err);
+							},
+						});
 					} catch (e) {
 						console.log(e);
 					}

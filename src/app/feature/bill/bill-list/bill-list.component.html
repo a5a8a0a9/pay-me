@@ -5,41 +5,44 @@
 		</div>
 
 		<div>
-			<p-button icon="pi pi-plus" [rounded]="true" (onClick)="billCreateCtrl.show()"></p-button>
+			<p-button icon="pi pi-plus" [rounded]="true" (onClick)="billEditCtrl.show()"></p-button>
 		</div>
 	</div>
 
 	<div class="grid grid-cols-12 gap-3">
-		@for (bill of bills$ | async; track $index) {
+		@for (bill of billList; track $index) {
 			<div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3">
 				<p-card styleClass="w-full cursor-pointer" [routerLink]="['/bill', bill.id]">
 					<ng-template #title>
 						<div class="overflow-hidden truncate">
-							{{ bill.title }}
+							{{ bill.name }}
 						</div>
 					</ng-template>
 
 					<ng-template #subtitle>
 						<i class="fa-fw fa-solid fa-calendar"></i>
-						<span>{{ bill.createdAt | date: 'yyyy-MM-dd' }}</span>
+						<span>{{ bill.createdAt | date: 'yyyy/MM/dd' }}</span>
 					</ng-template>
 
-					<div>
-						<p>
-							<i class="fa-fw fa-solid fa-person"></i>
-							<span>{{ bill.participants.length }}</span>
-						</p>
-					</div>
-
 					<ng-template #footer>
-						<div class="text-end">
+						<div class="flex justify-end gap-2">
+							<p-button
+								icon="pi pi-pencil"
+								severity="primary"
+								size="small"
+								[rounded]="true"
+								[outlined]="true"
+								(onClick)="
+									$event.stopPropagation(); billEditCtrl.show({ billId: bill.id, isEdit: true })
+								"
+							></p-button>
 							<p-button
 								icon="pi pi-trash"
 								severity="danger"
 								size="small"
 								[rounded]="true"
 								[outlined]="true"
-								(onClick)="$event.stopPropagation(); deleteBill(bill.id)"
+								(onClick)="$event.stopPropagation(); deleteBill(bill)"
 							></p-button>
 						</div>
 					</ng-template>
@@ -52,7 +55,7 @@
 						icon="pi pi-plus"
 						label="新增你的第一筆帳單"
 						severity="primary"
-						(onClick)="billCreateCtrl.show()"
+						(onClick)="billEditCtrl.show()"
 					/>
 				</div>
 			</div>
@@ -60,6 +63,6 @@
 	</div>
 </div>
 
-@if (billCreateCtrl.isShow) {
-	<yo-bill-create (hide)="billCreateCtrl.hide()" />
+@if (billEditCtrl.isShow) {
+	<yo-bill-edit [data]="billEditCtrl.data" (hide)="billEditCtrl.hide()" (refresh)="getBillList()" />
 }
