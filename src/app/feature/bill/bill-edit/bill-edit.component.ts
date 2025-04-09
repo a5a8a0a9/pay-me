@@ -7,6 +7,7 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
+import { FormItemComponent } from '@shared/component';
 import { BillDetail, User } from '@shared/model';
 import { FormService } from '@shared/service';
 import { MessageService } from 'primeng/api';
@@ -19,7 +20,7 @@ import { BillAccessService } from '../bill-access.service';
 
 @Component({
 	selector: 'yo-bill-edit',
-	imports: [Dialog, Button, InputText, Textarea, ReactiveFormsModule],
+	imports: [Dialog, Button, InputText, Textarea, ReactiveFormsModule, FormItemComponent],
 	templateUrl: './bill-edit.component.html',
 	styleUrl: './bill-edit.component.scss',
 })
