@@ -1,31 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Bill, BillEdit, Expense } from './bill.model';
+import { BillDetail } from '@shared/model';
+import { StorageService } from '@shared/service';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class BillAccessService {
-	private readonly keys = {
-		bills: 'bills',
-		expenses: 'expenses',
+	private readonly KEY_MAP = {
+		bill: 'bill',
+		billList: 'billList',
+		expense: 'expense',
 	};
 
-	constructor() {}
+	constructor(private storageService: StorageService) {}
 
-	getBillList(): Observable<Bill[]> {
-		return of([]);
+	getBillList(): Observable<BillDetail[] | null> {
+		return this.storageService.getItem<BillDetail[]>(this.KEY_MAP.billList);
 	}
 
-	getBill(id: string): Observable<Bill | null> {
-		return of(null);
+	getBill(id: string): Observable<BillDetail | null> {
+		return this.storageService
+			.getItem<BillDetail[]>(this.KEY_MAP.billList)
+			.pipe(map(billList => billList?.find(bill => bill.id === id) || null));
 	}
 
-	createBill(request: BillEdit) {}
+	createBill(request: any) {}
 
 	deleteBill(id: string) {}
 
-	getExpenseList(billId: string): Observable<Expense[]> {
+	getExpenseList(billId: string): Observable<any[]> {
 		return of([]);
 	}
 }

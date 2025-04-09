@@ -1,13 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Bill, Expense } from '@shared/model';
 import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs';
-import { forkJoin } from 'rxjs';
-import { BillAccessService } from '../bill-access.service';
-import { Bill, Expense, Settlement } from '../bill.model';
-import { BillService } from '../bill.service';
 
 @Component({
 	selector: 'yo-bill-detail',
@@ -20,32 +17,10 @@ export class BillDetailComponent implements OnInit {
 
 	bill: Bill | null = null;
 	expenses: Expense[] = [];
-	settlements: Settlement[] = [];
 
-	constructor(
-		private billService: BillService,
-		private activatedRoute: ActivatedRoute,
-		private billAccessService: BillAccessService
-	) {}
+	constructor(private activatedRoute: ActivatedRoute) {}
 
 	ngOnInit(): void {
 		this.billId = this.activatedRoute.snapshot.params.id;
-
-		forkJoin([
-			this.billAccessService.getBill(this.billId),
-			this.billAccessService.getExpenseList(this.billId),
-		]).subscribe(([bill, expenses]) => {
-			console.log(bill);
-			console.log(expenses);
-
-			if (!!bill) {
-				this.bill = bill;
-			}
-
-			this.expenses = expenses;
-
-			this.settlements = this.billService.getSettlements(bill, expenses);
-			console.log(this.settlements);
-		});
 	}
 }

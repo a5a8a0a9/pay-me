@@ -10,12 +10,12 @@
 	</div>
 
 	<div class="grid grid-cols-12 gap-3">
-		@for (bill of bills$ | async; track $index) {
+		@for (bill of billList; track $index) {
 			<div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3">
 				<p-card styleClass="w-full cursor-pointer" [routerLink]="['/bill', bill.id]">
 					<ng-template #title>
 						<div class="overflow-hidden truncate">
-							{{ bill.title }}
+							{{ bill.name }}
 						</div>
 					</ng-template>
 
@@ -23,13 +23,6 @@
 						<i class="fa-fw fa-solid fa-calendar"></i>
 						<span>{{ bill.createdAt | date: 'yyyy-MM-dd' }}</span>
 					</ng-template>
-
-					<div>
-						<p>
-							<i class="fa-fw fa-solid fa-person"></i>
-							<span>{{ bill.participants.length }}</span>
-						</p>
-					</div>
 
 					<ng-template #footer>
 						<div class="text-end">

@@ -13,7 +13,6 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { BillAccessService } from '../bill-access.service';
-import { BillEdit } from '../bill.model';
 
 @Component({
 	selector: 'yo-bill-create',
@@ -67,11 +66,10 @@ export class BillCreateComponent {
 		this.formService.validate(this.form).subscribe({
 			next: () => {
 				const formValue = this.form.getRawValue();
-				const request: BillEdit = {
+				const request = {
 					title: formValue.title!,
 					participants: formValue.participants.map(item => item.name!),
 					createdAt: '2025-01-01',
-					ownerId: 'young',
 				};
 
 				this.saveBills(request);
