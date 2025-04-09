@@ -1,0 +1,12 @@
+.yo-form-label {
+	position: relative;
+
+	&.required::before {
+		content: '*';
+		color: var(--p-button-text-danger-color);
+		font-style: italic;
+		position: absolute;
+		top: 0;
+		left: -0.5rem;
+	}
+}

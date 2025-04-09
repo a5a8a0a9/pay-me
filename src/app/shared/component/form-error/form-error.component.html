@@ -1,0 +1,13 @@
+<p class="m-0 text-red-500" style="font-size: 12px">
+	@if (control?.errors?.required) {
+		{{ '不可為空' }}
+	} @else if (control?.errors?.minlength) {
+		{{ '長度不可小於' + control?.errors?.minlength?.requiredLength }}
+	} @else if (control?.errors?.maxlength) {
+		{{ '長度不可大於' + control?.errors?.maxlength?.requiredLength }}
+	} @else if (control?.errors?.min) {
+		{{ '不可小於' + control?.errors?.min?.min }}
+	} @else if (control?.errors?.max) {
+		{{ '不可大於' + control?.errors?.max?.max }}
+	}
+</p>
