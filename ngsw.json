@@ -1,0 +1,107 @@
+{
+  "configVersion": 1,
+  "timestamp": 1744216460342,
+  "index": "/pay-me/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pay-me/chunk-K4FD2P4X.js",
+        "/pay-me/chunk-XUTKCDD7.js",
+        "/pay-me/favicon.ico",
+        "/pay-me/index.html",
+        "/pay-me/main-SEFV4TVU.js",
+        "/pay-me/manifest.webmanifest",
+        "/pay-me/polyfills-FFHMD2TL.js",
+        "/pay-me/styles-W6BKTVFU.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pay-me/assets/icons/icon-128x128.png",
+        "/pay-me/assets/icons/icon-144x144.png",
+        "/pay-me/assets/icons/icon-152x152.png",
+        "/pay-me/assets/icons/icon-192x192.png",
+        "/pay-me/assets/icons/icon-384x384.png",
+        "/pay-me/assets/icons/icon-512x512.png",
+        "/pay-me/assets/icons/icon-72x72.png",
+        "/pay-me/assets/icons/icon-96x96.png",
+        "/pay-me/media/fa-brands-400-TKIFOBMG.ttf",
+        "/pay-me/media/fa-brands-400-WYBTWVAN.woff2",
+        "/pay-me/media/fa-regular-400-GWALJKK4.woff2",
+        "/pay-me/media/fa-regular-400-M6QPW5EG.ttf",
+        "/pay-me/media/fa-solid-900-7UFRKXGW.woff2",
+        "/pay-me/media/fa-solid-900-NKG3KPMA.ttf",
+        "/pay-me/media/fa-v4compatibility-4TX3C3EF.ttf",
+        "/pay-me/media/fa-v4compatibility-MX6GQX55.woff2",
+        "/pay-me/media/primeicons-4GST5W3O.woff2",
+        "/pay-me/media/primeicons-DHQU4SEP.svg",
+        "/pay-me/media/primeicons-GEFHGEHP.ttf",
+        "/pay-me/media/primeicons-P53SE5CV.woff"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/pay-me/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/pay-me/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/pay-me/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/pay-me/assets/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/pay-me/assets/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/pay-me/assets/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/pay-me/assets/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/pay-me/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/pay-me/chunk-K4FD2P4X.js": "da2164e116fd2233f46d359d131d7edc5ad45deb",
+    "/pay-me/chunk-XUTKCDD7.js": "b384ad5fdc130fec9dd7d9bbb91fda11f80bc172",
+    "/pay-me/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/pay-me/index.html": "f842a41fdad363fe3bed93c4c411c5e8b5fab7bc",
+    "/pay-me/main-SEFV4TVU.js": "2c04623d5884232ad63ccd6bdb712000336555dd",
+    "/pay-me/manifest.webmanifest": "fd48594e6ec6bf4bd8e86a6e67c792bc8cfd81d2",
+    "/pay-me/media/fa-brands-400-TKIFOBMG.ttf": "d8b3568e9d8a1d3c01c85520eb9ca0b49b72815d",
+    "/pay-me/media/fa-brands-400-WYBTWVAN.woff2": "373361ed756b1fe68ce2f5968d467826b6973bb5",
+    "/pay-me/media/fa-regular-400-GWALJKK4.woff2": "07fc0ae14bb3187839082aed3bca11dfb1e04524",
+    "/pay-me/media/fa-regular-400-M6QPW5EG.ttf": "2d7890e12afb77490112ec57fe47ca0688aebda2",
+    "/pay-me/media/fa-solid-900-7UFRKXGW.woff2": "97f0942c6627ddd89fb62170e5cac9a2cbd6c98c",
+    "/pay-me/media/fa-solid-900-NKG3KPMA.ttf": "e9ace557c3aa403307f1e7a2cef1c035d522b94b",
+    "/pay-me/media/fa-v4compatibility-4TX3C3EF.ttf": "321d89c65f1746f111341556bc62c7e217ad2544",
+    "/pay-me/media/fa-v4compatibility-MX6GQX55.woff2": "35794892fa2b4aede41ec686df49a1283ab2b2b3",
+    "/pay-me/media/primeicons-4GST5W3O.woff2": "837c1279b6af9d297f34fdb43e6fcc9206a79f32",
+    "/pay-me/media/primeicons-DHQU4SEP.svg": "a07ae39027c1a780b42fd82fad7575c2924d9d28",
+    "/pay-me/media/primeicons-GEFHGEHP.ttf": "3b878ca7e88945a8ec25814810b95367d8977ae6",
+    "/pay-me/media/primeicons-P53SE5CV.woff": "361e3af71bb4e515feead2f787348a92a5527158",
+    "/pay-me/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
+    "/pay-me/styles-W6BKTVFU.css": "c401fda7bdc21ab702579af80ea4f482d400d258"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
