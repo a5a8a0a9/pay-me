@@ -69,4 +69,25 @@ export class BillAccessService {
 			map(billList => this.storageService.setItem<BillDetail[]>(this.KEY_MAP.billList, billList))
 		);
 	}
+
+	deleteExpense(billId: string, expenseId: string) {
+		return this.getBillList().pipe(
+			map(billList => {
+				if (!billList) {
+					return [];
+				}
+				const billIndex = billList.findIndex(bill => bill.id === billId);
+				if (billIndex !== -1) {
+					const expenseIndex = billList[billIndex].expenseList.findIndex(
+						expense => expense.id === expenseId
+					);
+					if (expenseIndex !== -1) {
+						billList[billIndex].expenseList.splice(expenseIndex, 1);
+					}
+				}
+				return billList;
+			}),
+			map(billList => this.storageService.setItem<BillDetail[]>(this.KEY_MAP.billList, billList))
+		);
+	}
 }

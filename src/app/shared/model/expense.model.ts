@@ -8,6 +8,8 @@ export interface ExpenseUserAmount {
  */
 export interface Expense {
 	id: string;
+
+	name: string;
 	/**
 	 * 發生時間
 	 */

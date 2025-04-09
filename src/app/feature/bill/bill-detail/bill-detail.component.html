@@ -14,11 +14,28 @@
 				<p-tabpanels>
 					<p-tabpanel value="expense">
 						<div class="flex flex-col gap-3">
+							<div class="text-center">
+								<p-button
+									icon="pi pi-plus"
+									label="新增花費"
+									severity="primary"
+									(onClick)="billExpenseEditCtrl.show({ billId: bill.id })"
+								/>
+							</div>
+
 							@for (expense of bill.expenseList; track $index) {
-								<p-card>
+								<p-card
+									(click)="
+										billExpenseEditCtrl.show({
+											billId: bill.id,
+											expenseId: expense.id,
+											isEdit: true
+										})
+									"
+								>
 									<ng-template #title>
 										<div>
-											{{ expense.memo }}
+											{{ expense.name }}
 										</div>
 									</ng-template>
 
@@ -27,27 +44,36 @@
 										<span>{{ expense.occurrenceTime | date: 'yyyy-MM-dd' }}</span>
 									</ng-template>
 
-									<div class="flex flex-col gap-2">
-										<!-- <div>
-											{{ expense.payer }} 先付 NT${{ expense.amount }}
-										</div> -->
-									</div>
+									<p>{{ expense.memo }}</p>
+
+									<div class="flex flex-col gap-2"></div>
+
+									<ng-template #footer>
+										<div class="flex justify-end gap-2">
+											<p-button
+												icon="pi pi-trash"
+												severity="danger"
+												size="small"
+												[rounded]="true"
+												[outlined]="true"
+												(onClick)="$event.stopPropagation(); deleteExpense(bill, expense)"
+											></p-button>
+										</div>
+									</ng-template>
 								</p-card>
-							} @empty {
-								<div class="text-center">
-									<p-button icon="pi pi-plus" label="新增付款資訊" severity="primary" />
-								</div>
 							}
 						</div>
 					</p-tabpanel>
 
 					<p-tabpanel value="settlement">
 						<div class="flex flex-col gap-3">
-							<!-- @for (balance of bill.balanceList; track $index) {
+							@for (balance of bill.balanceList; track $index) {
 								<p-card>
-									{{ settlement.from }} 需支付 {{ settlement.to }} NT${{ settlement.amount }}
+									{{ userDict[balance.fromUserId] }} 需支付 {{ userDict[balance.toUserId] }} NT${{
+										balance.amount
+									}}
 								</p-card>
-							} -->
+							}
 						</div>
 					</p-tabpanel>
 				</p-tabpanels>
@@ -57,3 +83,10 @@
 		<div class="p-3 text-center text-red-500">無法取得帳單資訊</div>
 	}
 </div>
+
+@if (billExpenseEditCtrl.isShow) {
+	<yo-bill-expense-edit
+		[data]="billExpenseEditCtrl.data"
+		(hide)="billExpenseEditCtrl.hide(); getBillDetail(billId)"
+	></yo-bill-expense-edit>
+}
