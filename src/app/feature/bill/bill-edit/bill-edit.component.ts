@@ -67,13 +67,13 @@ export class BillEditComponent implements OnInit {
 
 	ngOnInit(): void {
 		if (this.data?.isEdit) {
-			this.getData(this.data.billId);
+			this.getBill(this.data.billId);
 		} else {
 			this.addUser();
 		}
 	}
 
-	getData(billId: string) {
+	getBill(billId: string) {
 		this.billAccessService.getBill(billId).subscribe({
 			next: bill => {
 				if (!bill) return;

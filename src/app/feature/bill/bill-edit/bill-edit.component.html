@@ -21,7 +21,7 @@
 			<div formArrayName="userList" class="flex flex-col gap-2">
 				@for (userForm of userFormList.controls; track $index; let userIndex = $index) {
 					<div [formGroupName]="userIndex" class="flex items-center gap-2">
-						<yo-form-item [control]="form.controls.memo">
+						<yo-form-item [control]="$any(userForm).controls.name">
 							<input pInputText formControlName="name" type="text" placeholder="參與者" />
 						</yo-form-item>
 

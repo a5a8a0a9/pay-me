@@ -1,0 +1,111 @@
+<p-dialog
+	[(visible)]="visible"
+	header="編輯花費"
+	[modal]="true"
+	[draggable]="false"
+	[style]="{ width: '600px' }"
+	(onHide)="hide.emit()"
+>
+	<form [formGroup]="form" class="grid grid-cols-12 gap-2">
+		<yo-form-item [control]="form.controls.occurrenceTime" label="日期" class="col-span-12">
+			<p-datepicker
+				formControlName="occurrenceTime"
+				[iconDisplay]="'input'"
+				[showIcon]="true"
+				dateFormat="yy/mm/dd"
+			/>
+		</yo-form-item>
+
+		<yo-form-item [control]="form.controls.name" label="名稱" class="col-span-12">
+			<input pInputText formControlName="name" type="text" placeholder="名稱" class="w-full" />
+		</yo-form-item>
+
+		<yo-form-item [control]="form.controls.amount" label="金額" class="col-span-12">
+			<p-inputnumber
+				formControlName="amount"
+				mode="decimal"
+				[minFractionDigits]="2"
+				placeholder="金額"
+				class="w-full"
+			/>
+		</yo-form-item>
+
+		<yo-form-item [control]="form.controls.memo" label="說明" class="col-span-12">
+			<textarea pTextarea formControlName="memo" placeholder="說明" class="w-full"></textarea>
+		</yo-form-item>
+
+		<p-divider styleClass="col-span-12"></p-divider>
+
+		<yo-form-item [control]="form.controls.payerList" label="付款者" class="col-span-12">
+			<div formArrayName="payerList" class="mb-2 grid grid-cols-12 gap-2 pl-3">
+				@for (
+					payerForm of payerFormList.controls;
+					let payerFormIndex = $index;
+					track payerFormIndex
+				) {
+					<div [formGroupName]="payerFormIndex" class="col-span-12">
+						<yo-form-item
+							[control]="$any(payerForm).controls.amount"
+							[label]="userDict[payerForm.value.userId]"
+						>
+							<p-inputgroup>
+								<p-inputgroup-addon>NT$</p-inputgroup-addon>
+								<p-inputnumber
+									formControlName="amount"
+									mode="decimal"
+									[minFractionDigits]="2"
+									placeholder="金額"
+								/>
+								<p-inputgroup-addon>元</p-inputgroup-addon>
+							</p-inputgroup>
+						</yo-form-item>
+					</div>
+				}
+			</div>
+
+			@if (!isPayerTotalValid) {
+				<p class="text-red-500">付款者金額總和不等於花費金額，請檢查付款者金額是否正確。</p>
+			}
+		</yo-form-item>
+
+		<p-divider styleClass="col-span-12"></p-divider>
+
+		<yo-form-item [control]="form.controls.splitterList" label="分攤者" class="col-span-12">
+			<p-button label="平均分配" size="small" (onClick)="distributeAmountEvenly()"></p-button>
+			<div formArrayName="splitterList" class="grid grid-cols-12 gap-2 pl-3">
+				@for (
+					splitterForm of splitterFormList.controls;
+					let splitterFormIndex = $index;
+					track splitterFormIndex
+				) {
+					<div [formGroupName]="splitterFormIndex" class="col-span-12">
+						<yo-form-item
+							[control]="$any(splitterForm).controls.amount"
+							[label]="userDict[splitterForm.value.userId]"
+						>
+							<p-inputgroup>
+								<p-inputgroup-addon>NT$</p-inputgroup-addon>
+								<p-inputnumber
+									formControlName="amount"
+									mode="decimal"
+									[minFractionDigits]="2"
+									placeholder="金額"
+								/>
+								<p-inputgroup-addon>元</p-inputgroup-addon>
+							</p-inputgroup>
+						</yo-form-item>
+					</div>
+				}
+			</div>
+
+			@if (!isSplitterTotalValid) {
+				<p class="text-red-500">分攤者金額總和不等於花費金額，請檢查分攤者金額是否正確。</p>
+			}
+		</yo-form-item>
+	</form>
+
+	<ng-template #footer>
+		<p-button label="取消" severity="secondary" (onClick)="hide.emit()" />
+		<p-button label="儲存" (onClick)="save()" />
+	</ng-template>
+</p-dialog>
